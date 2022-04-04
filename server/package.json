@@ -1,0 +1,47 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "start:prod": "ts-node -r tsconfig-paths/register src/index.ts",
+    "test": "jest --watch",
+    "db:push": "prisma db push",
+    "db:seed": "prisma db seed",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "npx prisma studio"
+  },
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.23",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint": "^8.12.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "prisma": "^3.11.1",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.14.1",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.11.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  }
+}
