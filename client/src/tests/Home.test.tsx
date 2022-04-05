@@ -1,4 +1,5 @@
 import { Home } from '~/pages/Home';
+
 import { render, screen } from './utils';
 
 describe('Home page', () => {

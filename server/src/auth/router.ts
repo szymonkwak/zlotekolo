@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import { getMe } from './handlers/me';
 
 const authRouter = Router();
