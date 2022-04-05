@@ -1,4 +1,4 @@
-import { request } from '~/common/test/utils';
+import { request } from '~/common/tests/utils';
 
 describe('Get me handler', () => {
   it('returns Mister Krzysztof', async () => {

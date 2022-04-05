@@ -1,3 +1,7 @@
+import { useMe } from '~/api/hooks/useMe';
+
 export const Home = () => {
-  return <>It works</>;
+  const { data } = useMe();
+
+  return <>{data?.email}</>;
 };
