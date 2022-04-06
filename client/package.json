@@ -7,8 +7,9 @@
     "build": "tsc && vite build",
     "test": "jest --watch",
     "lint": "eslint --fix",
-    "lint:github-action": "eslint src/",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:github-action": "jest",
+    "lint:github-action": "eslint src/"
   },
   "dependencies": {
     "axios": "^0.26.1",
