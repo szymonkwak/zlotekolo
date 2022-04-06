@@ -25,5 +25,5 @@ jobs:
     - name: Build
       run: |
         npm run lint
-        npm run test
+        npm run jest
         npm run start:prod
