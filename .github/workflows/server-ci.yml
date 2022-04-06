@@ -23,6 +23,8 @@ jobs:
     - name: Install modules
       run: npm install
     - name: Build
+      env:
+        DATABASE_URL: ${{secrets.DATABASE_URL}}
       run: |
         npm run lint
         npm run start:prod
