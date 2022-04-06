@@ -1,5 +1,5 @@
 name: Run ESLint and tests on pull requests
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
           node-version: 16
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
-      - run: npm ci
+      - run: npm install
       - run: npm run build
       - run: lint:github-action
       - run: npm test
