@@ -1,6 +1,6 @@
-import { Home } from '~/pages/Home';
+import { render, screen } from '~/tests/utils';
 
-import { render, screen } from './utils';
+import { Home } from './Home';
 
 describe('Home page', () => {
   it('displays email of active user', async () => {

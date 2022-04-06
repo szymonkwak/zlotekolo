@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
+
 import { render, RenderOptions } from '@testing-library/react';
 import { FC, ReactElement } from 'react';
+
 import { QueryClientProvider } from '~/api/QueryClientProvider';
 
 const WithProviders: FC = ({ children }) => {

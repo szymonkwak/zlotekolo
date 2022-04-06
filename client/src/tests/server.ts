@@ -1,5 +1,6 @@
-import { rest, ResponseResolver, RestContext, MockedRequest } from 'msw';
+import { MockedRequest, ResponseResolver, rest, RestContext } from 'msw';
 import { setupServer } from 'msw/node';
+
 import { getMe } from './mocks/getMe';
 
 const success =
