@@ -1,4 +1,4 @@
-name: Run ESLint and tests on pull requests
+name: Client tests & eslint
 on: [push, pull_request]
 
 jobs:
