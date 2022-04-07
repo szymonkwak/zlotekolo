@@ -17,5 +17,7 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
       - run: npm ci
       - run: npm run build
-      - run: npm run lint:github-action
-      - run: npm run test:github-action
+      - name: ESLint check
+        run: npm run lint:github-action
+      - name: Jest - run tests
+        run: npm run test:github-action
