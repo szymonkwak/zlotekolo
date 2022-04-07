@@ -8,6 +8,8 @@
     "start:prod": "ts-node -r tsconfig-paths/register src/index.ts",
     "test": "jest --watch",
     "lint": "eslint --fix",
+    "test:github": "jest ",
+    "lint:github": "eslint src/",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:migrate": "prisma migrate dev",

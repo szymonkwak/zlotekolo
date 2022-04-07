@@ -13,18 +13,20 @@ jobs:
         working-directory: ./server
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}       
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}        
-        cache-dependency-path: '**/package-lock.json'
-        cache: 'npm'
-    - name: Install modules
-      run: npm install
-    - name: Build
-      env:
-        DATABASE_URL: ${{secrets.DATABASE_URL}}
-      run: |
-        npm run lint
-        npm run start:prod
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache-dependency-path: "**/package-lock.json"
+          cache: "npm"
+      - name: Install modules
+        run: npm install
+      - name: Build
+        env:
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+        run: |
+          npm ci
+          npm run lint
+          npm run test:github
+          npm run start:prod
