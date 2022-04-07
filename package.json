@@ -1,0 +1,21 @@
+{
+  "name": "bybike",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && npm install --dev",
+    "heroku-postbuild": "cd server && npm install --only=dev && NODE_ENV=development npm install --no-shrinkwrap && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/402-coders/ByBike.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/402-coders/ByBike/issues"
+  },
+  "homepage": "https://github.com/402-coders/ByBike#readme"
+}
