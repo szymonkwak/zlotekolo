@@ -30,6 +30,7 @@ jobs:
           npm run lint:github
           npm run db:push
           npm run db:seed
+          npm run test:github
           npm run start:prod
   deploy:
     runs-on: ubuntu-latest
