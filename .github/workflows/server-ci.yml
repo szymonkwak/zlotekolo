@@ -28,5 +28,7 @@ jobs:
         run: |
           npm ci
           npm run lint
+          npm db:push
+          npm db:seed
           npm run test:github
           npm run start:prod
