@@ -9,7 +9,7 @@
     "lint": "eslint --fix",
     "preview": "vite preview",
     "test:github-action": "jest",
-    "lint:github-action": "eslint src/"
+    "lint:github-action": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "axios": "^0.26.1",
