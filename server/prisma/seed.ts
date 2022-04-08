@@ -5,5 +5,5 @@ const prisma = new PrismaClient();
 (async () => {
   await prisma.user.deleteMany();
 
-  await prisma.user.create({ data: { email: 'krzysztof@jarzyna.com' } });
+  await prisma.user.create({ data: { nickname: 'Krzysiu', email: 'krzysztof@jarzyna.com', toWorkDistance: 2.5 } });
 })();
