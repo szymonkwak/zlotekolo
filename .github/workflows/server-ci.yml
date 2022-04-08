@@ -22,7 +22,7 @@ jobs:
           cache: "npm"
       - name: Install npm modules
         run: npm ci
-      - name: Build
+      - name: Build app
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
         run: |
