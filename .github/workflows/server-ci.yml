@@ -21,7 +21,7 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
           cache: "npm"
       - name: Install npm modules
-          npm ci
+        run: npm ci
       - name: Build
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
