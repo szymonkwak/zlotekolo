@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "cd server && npm install --dev",
-    "heroku-postbuild": "cd server && npm run ts-node -r tsconfig-paths/register src/index.ts",
-    "start": "cd server && npm run ts-node -r tsconfig-paths/register src/index.ts",
-    "build": "tsc"
+    "start": "cd server && node build/index.js",
+    "build": "cd server && tsc",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
