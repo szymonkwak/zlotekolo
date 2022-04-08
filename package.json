@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cd server && node build/index.js",
     "build": "cd server && npm run tsc",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
