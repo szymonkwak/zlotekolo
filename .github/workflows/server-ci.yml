@@ -21,12 +21,11 @@ jobs:
           cache-dependency-path: "**/package-lock.json"
           cache: "npm"
       - name: Install modules
-        run: npm install
+          npm ci
       - name: Build
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
         run: |
-          npm ci
           npm run lint:github
           npm run db:push
           npm run db:seed
