@@ -1,20 +1,24 @@
 name: Client tests & eslint
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: 'client'
+        working-directory: "client"
 
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
       - run: npm ci
       - run: npm run build
       - name: ESLint check
