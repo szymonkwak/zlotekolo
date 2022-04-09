@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
   res.send('ok');
 });
 
+// ------------------- TEMOPORARY ENDPOINTS
 const isLogged: RequestHandler = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
 };
@@ -31,5 +32,9 @@ app.get('/auth/google/callback', passport.authenticate('google', { successRedire
 app.get('/protected', (req, res) => {
   res.send('<h2>Jesteś zalogowany</h2>');
 });
+app.post('/creat', (req, res) => {
+  req.body;
+});
+// ------------------------
 
 export { app };

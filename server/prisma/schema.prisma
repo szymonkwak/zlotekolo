@@ -11,10 +11,11 @@ datasource db {
 }
 
 model User {
-  id             String  @id @default(uuid())
+  id             String  @id @unique
+  username       String
   nickname       String
-  email          String  @unique
-  toWorkDistance Float
+  avatar         String
+  toWorkDistance Float   @default(0)
   points         Point[]
 }
 
