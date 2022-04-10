@@ -9,6 +9,7 @@ interface GoogleProfileResponse {
   provider: string;
   id: string;
   displayName: string;
+  email: string;
   picture: string;
 }
 
@@ -31,7 +32,13 @@ passport.use(
         const user = await prisma.user.findUnique({ where: { id: profile.id } });
         if (!user) {
           const newUser = await prisma.user.create({
-            data: { id: profile.id, username: profile.displayName, nickname: profile.displayName, avatar: profile.picture },
+            data: {
+              id: profile.id,
+              username: profile.displayName,
+              nickname: profile.displayName,
+              email: profile.email,
+              avatar: profile.picture,
+            },
           });
           console.log('Stworzono nowego usera w DB: ' + newUser.nickname);
           done(null, newUser);

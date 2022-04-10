@@ -14,6 +14,7 @@ model User {
   id             String  @id @unique
   username       String
   nickname       String
+  email          String  @unique
   avatar         String
   toWorkDistance Float   @default(0)
   points         Point[]
