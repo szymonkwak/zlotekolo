@@ -1,4 +1,5 @@
 import { MantineProvider } from '@mantine/core';
+
 import { defaultTheme } from './api/theme';
 import { Router } from './routes/router';
 

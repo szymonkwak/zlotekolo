@@ -6,7 +6,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "test": "jest --watch",
-    "lint": "eslint --fix",
+    "lint": "eslint src --fix",
     "preview": "vite preview",
     "test:github-action": "jest",
     "lint:github-action": "eslint src/"
