@@ -20,8 +20,13 @@ passport.use(
       callbackURL: '/auth/google/callback',
       passReqToCallback: true,
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async (request: any, accessToken: any, refreshToken: any, profile: GoogleProfileResponse, done: any) => {
+    async (
+      request: unknown,
+      accessToken: string,
+      refreshToken: unknown,
+      profile: GoogleProfileResponse,
+      done: (err: unknown, user: User | null) => void
+    ) => {
       try {
         const user = await prisma.user.findUnique({ where: { id: profile.id } });
         if (!user) {

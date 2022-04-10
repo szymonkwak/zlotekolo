@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // ----- TEMOPORARY ENDPOINTS -------------
-app.get('/auth', passport.authenticate('google', { scope: ['profile'] }));
+app.get('/login', passport.authenticate('google', { scope: ['profile'] }));
 app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/protected', failureRedirect: '/' }));
 app.get('/protected', (req, res) => {
   res.send('<h2>Jesteś zalogowany</h2>');
