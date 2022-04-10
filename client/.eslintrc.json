@@ -18,7 +18,18 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended"
   ],
-  "plugins": ["react", "react-hooks", "import", "simple-import-sort", "jest"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import",
+    "simple-import-sort",
+    "jest"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
