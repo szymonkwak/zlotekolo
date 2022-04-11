@@ -30,7 +30,6 @@ passport.use(
     ) => {
       try {
         let user = await prisma.user.findUnique({ where: { id: profile.id } });
-        console.log('W bazie: ' + user?.nickname);
         if (!user) {
           user = await prisma.user.create({
             data: {
@@ -41,7 +40,6 @@ passport.use(
               avatar: profile.picture,
             },
           });
-          console.log('Stworzono nowego usera w DB: ' + user.nickname);
         }
         done(null, user);
       } catch (err) {
