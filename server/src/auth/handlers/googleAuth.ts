@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { User } from '@prisma/client';
 import passport from 'passport';
+import { Strategy } from 'passport-google-oauth2';
 
 import { prisma } from '~/common/prisma';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const GoogleStrategy = require('passport-google-oauth2');
 
 interface GoogleProfileResponse {
   provider: string;
@@ -14,10 +14,10 @@ interface GoogleProfileResponse {
 }
 
 passport.use(
-  new GoogleStrategy(
+  new Strategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientID: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       callbackURL: '/api/auth/google/callback',
       passReqToCallback: true,
     },
@@ -29,9 +29,10 @@ passport.use(
       done: (err: unknown, user: User | null) => void
     ) => {
       try {
-        const user = await prisma.user.findUnique({ where: { id: profile.id } });
+        let user = await prisma.user.findUnique({ where: { id: profile.id } });
+        console.log('W bazie: ' + user?.nickname);
         if (!user) {
-          const newUser = await prisma.user.create({
+          user = await prisma.user.create({
             data: {
               id: profile.id,
               username: profile.displayName,
@@ -40,24 +41,12 @@ passport.use(
               avatar: profile.picture,
             },
           });
-          console.log('Stworzono nowego usera w DB: ' + newUser.nickname);
-          done(null, newUser);
-        } else {
-          console.log('User był w bazie: ' + user.nickname);
-          done(null, user);
+          console.log('Stworzono nowego usera w DB: ' + user.nickname);
         }
+        done(null, user);
       } catch (err) {
-        console.log('error: ' + err);
-        done(err, null);
+        return done(err, null);
       }
     }
   )
 );
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user: User, done) => {
-  done(null, user);
-});
