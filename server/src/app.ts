@@ -7,6 +7,8 @@ import { authRouter } from './auth/router';
 
 dotenv.config();
 
+if (!process.env.CLIENT_URL) process.exit(1);
+
 const app = express();
 app.use(cors());
 app.use(cookieParser());

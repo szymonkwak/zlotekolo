@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { User } from '@prisma/client';
-import passport from 'passport';
 import { Strategy } from 'passport-google-oauth2';
 
 import { prisma } from '~/common/prisma';
@@ -13,11 +11,12 @@ interface GoogleProfileResponse {
   picture: string;
 }
 
-passport.use(
-  new Strategy(
+export const getGoogleAuthStrategy = () => {
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) process.exit(1);
+  return new Strategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/api/auth/google/callback',
       passReqToCallback: true,
     },
@@ -46,5 +45,5 @@ passport.use(
         return done(err, null);
       }
     }
-  )
-);
+  );
+};
