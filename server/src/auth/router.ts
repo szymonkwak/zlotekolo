@@ -1,5 +1,4 @@
 import './config/passport';
-import './typings/global';
 
 import { Router } from 'express';
 
