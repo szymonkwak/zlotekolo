@@ -14,4 +14,5 @@ process.env = Object.assign(process.env, {
   GOOGLE_CLIENT_ID: '12',
   GOOGLE_CLIENT_SECRET: '122',
   SECRET_TOKEN: 'token',
+  CLIENT_URL: '//url',
 });
