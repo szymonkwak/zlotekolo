@@ -5,14 +5,15 @@ describe('Get me handler', () => {
   it('returns Mister Krzysztof', async () => {
     prismaMock.user.findFirst.mockResolvedValue({
       id: 'sample-id',
-      username: 'krzysztof',
-      nickname: 'krzychu',
-      avatar: 'a',
-      toWorkDistance: 0,
+      username: 'Krzysztof',
+      nickname: 'Krzychu',
+      email: 'krzy@szt.of',
+      avatar: 'sample-avatar',
+      toWorkDistance: 4,
     });
     const response = await request.get('/api/auth/me');
 
     expect(response.status).toBe(200);
-    expect(response.body.nickname).toBe('krzychu');
+    expect(response.body.nickname).toBe('Krzychu');
   });
 });
