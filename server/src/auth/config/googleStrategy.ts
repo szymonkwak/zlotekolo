@@ -12,7 +12,12 @@ interface GoogleProfileResponse {
 }
 
 export const getGoogleAuthStrategy = () => {
-  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) process.exit(1);
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    // eslint-disable-next-line no-console
+    console.error('Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET');
+    process.exit(1);
+  }
+
   return new Strategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -28,7 +33,7 @@ export const getGoogleAuthStrategy = () => {
       done: (err: unknown, user: User | null) => void
     ) => {
       try {
-        let user = await prisma.user.findUnique({ where: { id: profile.id } });
+        let user = await prisma.user.findUnique({ where: { email: profile.email } });
         if (!user) {
           user = await prisma.user.create({
             data: {
