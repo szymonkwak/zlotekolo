@@ -7,7 +7,7 @@ export const App = () => {
 
   return (
     <MantineProvider theme={defaultTheme}>
-      <Global styles={(theme) => ({ body: { background: theme.colors.gray } })} />
+      <Global styles={(theme) => ({ body: { background: theme.colors.gray[9] } })} />
       <Router />
     </MantineProvider>
   );

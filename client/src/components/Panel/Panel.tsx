@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 import { Box, MantineTheme } from "@mantine/core";
 
 const styles = (theme: MantineTheme) => ({
-  maxWidth: 300,
+  maxWidth: 400,
   background: theme.white,
   borderRadius: '5px',
-  margin: '20px 80px',
+  margin: '30px 80px',
   padding: '80px 40px',
 })
 
