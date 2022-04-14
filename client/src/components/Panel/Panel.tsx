@@ -6,6 +6,7 @@ const styles = (theme: MantineTheme) => ({
   maxWidth: 300,
   background: theme.white,
   borderRadius: '5px',
+  margin: '20px 80px',
   padding: '80px 40px',
 })
 

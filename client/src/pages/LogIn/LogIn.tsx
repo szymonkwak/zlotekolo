@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, Text, TextInput, PasswordInput } from '@mantine/core';
+import { Button, Text, TextInput, PasswordInput, Group, Container } from '@mantine/core';
 
 
 import { Panel } from '../../components/Panel';
@@ -9,9 +9,11 @@ import { GoogleButton } from '../../components/GoogleButton';
 export const LogIn = () => {
   return (
     <Panel>
-      <Logo />
+      <Container size={220} px="0">
+        <Logo />
+      </Container>
 
-      <Text weight={700}>Zaloguj się na swoje konto</Text>
+      <Text weight={700} align="center">Zaloguj się na swoje konto</Text>
 
       <TextInput
         placeholder="Email"
@@ -21,11 +23,13 @@ export const LogIn = () => {
         placeholder="Hasło"
         label="Password"
       />
-      <Button type="submit" /*onClick={handleSignIn} sx={{ alignSelf: 'end', mt: 1 }}*/>
-        Zaloguj się
-      </Button>
-      <Text size="sm">lub</Text>
-      <GoogleButton />
+      <Group direction='column' position='center' spacing={'sm'} sx={{ padding: 15 }}>
+        <Button type="submit">
+          Zaloguj się
+        </Button>
+        <Text weight={500} align="center">lub</Text>
+        <GoogleButton />
+      </Group>
 
     </Panel>
   )
