@@ -1,6 +1,9 @@
-import React from 'react';
-import { render, screen } from '~/tests/utils';
 import '@testing-library/jest-dom';
+
+import React from 'react';
+
+import { render, screen } from '~/tests/utils';
+
 import { LogIn } from './LogIn';
 
 describe('LogIn component', () => {

@@ -1,9 +1,9 @@
+import { Button, Container, Group, PasswordInput, Stack,Text, TextInput } from '@mantine/core';
 import React from 'react';
-import { Button, Text, TextInput, PasswordInput, Group, Container, Stack } from '@mantine/core';
 
-import { Panel } from '../../components/Panel';
-import { Logo } from '../../components/Logo';
 import { GoogleButton } from '../../components/GoogleButton';
+import { Logo } from '../../components/Logo';
+import { Panel } from '../../components/Panel';
 
 export const LogIn = () => {
   return (
