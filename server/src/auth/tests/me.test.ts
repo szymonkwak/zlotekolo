@@ -3,10 +3,17 @@ import { request } from '~/common/tests/utils';
 
 describe('Get me handler', () => {
   it('returns Mister Krzysztof', async () => {
-    prismaMock.user.findFirst.mockResolvedValue({ email: 'krzysztof@jarzyna.com', id: 'sample-id' });
+    prismaMock.user.findFirst.mockResolvedValue({
+      id: 'sample-id',
+      username: 'Krzysztof',
+      nickname: 'Krzychu',
+      email: 'krzy@szt.of',
+      avatar: 'sample-avatar',
+      toWorkDistance: 4,
+    });
     const response = await request.get('/api/auth/me');
 
     expect(response.status).toBe(200);
-    expect(response.body.email).toBe('krzysztof@jarzyna.com');
+    expect(response.body.nickname).toBe('Krzychu');
   });
 });

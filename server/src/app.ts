@@ -8,6 +8,12 @@ import { userRouter } from './common/user/routes';
 
 dotenv.config();
 
+if (!process.env.CLIENT_URL) {
+  // eslint-disable-next-line no-console
+  console.error('Missing CLIENT_URL value');
+  process.exit(1);
+}
+
 const app = express();
 app.use(cors());
 app.use(cookieParser());
