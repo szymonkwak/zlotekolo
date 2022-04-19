@@ -10,18 +10,17 @@ import { InfoCircle } from './Info/Info';
 import { Rules } from './Rules/Rules';
 
 export const Configuration = () => {
-  const [username, setUsername] = useState('');
-  const [surname, setSurname] = useState('');
   const [nickname, setNickname] = useState('');
-  const [contractType, setContractType] = useState('');
-  const [toWorkDistance, setToWorkDistance] = useState(2);
+  const [contractType, setContractType] = useState<string | null>(null);
+  const [toWorkDistance, setToWorkDistance] = useState<number | undefined>(2);
+
   const [acceptRules, setAcceptRules] = useState(false);
   const [dataProccesingAgreement, setDataProccesingAgreement] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const mandatoryInfo = { username, surname, nickname, contractType, toWorkDistance };
+    const mandatoryInfo = { nickname, contractType, toWorkDistance };
 
     await axios.post(`${process.env.VITE_SERVER_URL}/api/users/`, mandatoryInfo);
     navigate(Paths.Home);
@@ -71,29 +70,10 @@ export const Configuration = () => {
             <Box>
               <Header title="Skonfiguruj swoje konto" />
               <Space h="xl" />
-
-              <Group grow mb="md" mt="md">
-                <TextInput
-                  size="md"
-                  placeholder="Wpisz imię"
-                  label="Imię"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-                <TextInput
-                  size="md"
-                  placeholder="Wpisz nazwisko"
-                  label="Nazwisko"
-                  value={surname}
-                  required
-                  onChange={(e) => setSurname(e.target.value)}
-                />
-              </Group>
               <Space h="xl" />
               <Group>
                 <TextInput
-                  size="md"
+                  size="lg"
                   label="Pseudonim"
                   placeholder="Wybierz pseudonim"
                   required
@@ -105,7 +85,7 @@ export const Configuration = () => {
               <Space h="xl" />
               <Group>
                 <Select
-                  size="md"
+                  size="lg"
                   label="Rodzaj umowy"
                   placeholder="Wybierz rodzaj umowy"
                   required
@@ -118,8 +98,8 @@ export const Configuration = () => {
               <Space h="xl" />
               <Group>
                 <NumberInput
-                  size="md"
-                  label="Długość drogi do pracy"
+                  size="lg"
+                  label="Długość drogi do pracy (km)"
                   precision={1}
                   decimalSeparator=","
                   step={0.1}

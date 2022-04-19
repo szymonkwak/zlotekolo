@@ -1,5 +1,5 @@
 import { Button, Modal, ScrollArea, Text, Title, TypographyStylesProvider } from '@mantine/core';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const Rules = () => {
   const [opened, setOpened] = useState(false);
@@ -15,18 +15,24 @@ export const Rules = () => {
           <TypographyStylesProvider>
             <Text size="md" sx={{ whiteSpace: 'pre-line' }}>
               <Title order={4}>§ 1 Postanowienia ogólne</Title>
-              1. Niniejszy regulamin, zwany dalej „Regulaminem”, określa zasady udziału w Kampanii „Rowerem do pracy, czyli dom, rower,
-              praca…i tak w kółko”.
+              <Text>
+                1. Niniejszy regulamin, zwany dalej „Regulaminem”, określa zasady udziału w Kampanii „Rowerem do pracy, czyli dom, rower,
+                praca…i tak w kółko”.
+              </Text>
               <Text>
                 2. Organizatorem Kampanii jest Wydział Gospodarki Komunalnej i Klimatu Urzędu Miasta Krakowa, zwany dalej GK, z siedzibą
                 przy ul. Wielopole 17a, 31-072 Kraków.
               </Text>
-              3. Wszyscy Przedsiębiorcy/Wydziały/Biura, o których mowa poniżej, nazywani są w dalszej części Regulaminu Podmiotami.
+              <Text>
+                3. Wszyscy Przedsiębiorcy/Wydziały/Biura, o których mowa poniżej, nazywani są w dalszej części Regulaminu Podmiotami.
+              </Text>
               <Title order={4}>§ 2 Cel Kampanii i jej charakter</Title>
-              1. Celem Kampanii jest promowanie roweru jako codziennego środka transportu wykorzystywanego w trakcie podróży do i z pracy.
-              Kampania skierowana jest w ramach działań na rzecz zrównoważonego transportu i mobilności, a także walki ze zmianami klimatu,
-              do mieszkańców Krakowa i pracowników krakowskich oraz podkrakowskich przedsiębiorców, instytucji itp., to jest osób, które na
-              co dzień mają znaczący wpływ na sytuację transportową w Krakowie.
+              <Text>
+                1. Celem Kampanii jest promowanie roweru jako codziennego środka transportu wykorzystywanego w trakcie podróży do i z pracy.
+                Kampania skierowana jest w ramach działań na rzecz zrównoważonego transportu i mobilności, a także walki ze zmianami
+                klimatu, do mieszkańców Krakowa i pracowników krakowskich oraz podkrakowskich przedsiębiorców, instytucji itp., to jest
+                osób, które na co dzień mają znaczący wpływ na sytuację transportową w Krakowie.
+              </Text>
               <Text>
                 2. Adresatami Kampanii są wszyscy pracownicy zgłoszonych do Kampanii Podmiotów zatrudniających na terenie Krakowa lub w jego
                 okolicach min. 20 pracowników. Bez znaczenia dla możliwości udziału w Kampanii ma forma zatrudnienia/współpracy z danym
@@ -36,30 +42,34 @@ export const Rules = () => {
               <Text>
                 3. W przypadku Urzędu Miasta Krakowa (UMK) zgłoszenia przyjmowane są odrębnie z każdego Wydziału/Biura (tzw. Komórki).
               </Text>
-              4. Kampania opiera się na wzajemnym zaufaniu Organizatora i uczestników.
+              <Text>4. Kampania opiera się na wzajemnym zaufaniu Organizatora i uczestników.</Text>
               <Title order={4}>§ 3 Czas trwania Kampanii</Title> 1. Kampania rozpoczyna się 1 maja 2022 r. i trwa do 30 listopada 2022 r.
               Organizator może skrócić lub wydłużyć czas trwania Kampanii.
               <Text>
                 2. Uczestnicy w ramach danego Podmiotu mogą dołączyć do Kampanii w trakcie jej trwania w momencie wskazanym przez
                 Koordynatora wewnętrznego, o którym mowa w § 6.
               </Text>
-              3. O wcześniejszym zakończeniu Kampanii lub jej wydłużeniu Organizator poinformuje niezwłocznie wszystkich Koordynatorów
-              wewnętrznych.
+              <Text>
+                3. O wcześniejszym zakończeniu Kampanii lub jej wydłużeniu Organizator poinformuje niezwłocznie wszystkich Koordynatorów
+                wewnętrznych.
+              </Text>
               <Title order={4}>§ 4 Warunki udziału w Kampanii</Title>
               1. Zgłoszenie Podmiotu do Kampanii i udział w niej jest jednoznaczny z akceptacją niniejszego Regulaminu.
               <Text>
                 2. Udział w Kampanii i udostępnienie jakichkolwiek danych na temat zgłoszonego Podmiotu, a zwłaszcza podanie nazwy Podmiotu
                 i jego adresu na potrzeby realizacji Kampanii jest całkowicie dobrowolne.
               </Text>
-              3. Udział danego Podmiotu w Kampanii oznacza automatyczną zgodę na zamieszczenie nazwy Podmiotu w artykułach promujących
-              Kampanię (publikowanych np. na stronie www.krakow.pl czy w dwutygodniku miejskim Krakow.pl).
+              <Text>
+                3. Udział danego Podmiotu w Kampanii oznacza automatyczną zgodę na zamieszczenie nazwy Podmiotu w artykułach promujących
+                Kampanię (publikowanych np. na stronie www.krakow.pl czy w dwutygodniku miejskim Krakow.pl).
+              </Text>
               <Text>
                 4. Pracownicy Urzędu Miasta Krakowa biorący udział w Kampanii wyrażają zgodę na pobranie podatku dochodowego od wartości
                 wszystkich otrzymanych upominków. Wartość należnego podatku będzie naliczana przez Wydział Finansowy i będzie pomniejszać
                 miesięczne wynagrodzenie pracownika. Pracownik UMK może odmówić przyjęcia upominku. W takiej sytuacji podatek nie zostanie
                 naliczony i potrącony.
               </Text>
-              5. Organizator może ograniczyć liczbę Podmiotów dopuszczonych do udziału w Kampanii.
+              <Text>5. Organizator może ograniczyć liczbę Podmiotów dopuszczonych do udziału w Kampanii.</Text>
               <Text>
                 6. Organizator może wyrazić zgodę na przystąpienie do Kampanii kolejnych Podmiotów w trakcie jej trwania we wskazanym
                 momencie.
@@ -69,11 +79,13 @@ export const Rules = () => {
                 spotkaniu informacyjnym (organizowanym stacjonarnie lub on-line) Koordynatora wewnętrznego lub innego przedstawiciela
                 Podmiotu.
               </Text>
-              8. Podmioty zobowiązują się do wykorzystania materiałów przekazanych przez Organizatora na rzecz promocji Kampanii wśród
-              swoich pracowników. Użycie dodatkowo jakichkolwiek innych materiałów (np. plakatów) w celu promocji Kampanii wymaga zgody
-              Organizatora. Organizator ma prawo odmówić wyrażenia zgody na wykorzystanie innych materiałów w ramach popularyzacji Kampanii
-              lub narzucić naniesienie stosownych zmian w materiałach. W przypadku niezastosowania się do niniejszego zapisu Organizator ma
-              prawo wykluczyć dany Podmiot z Kampanii.
+              <Text>
+                8. Podmioty zobowiązują się do wykorzystania materiałów przekazanych przez Organizatora na rzecz promocji Kampanii wśród
+                swoich pracowników. Użycie dodatkowo jakichkolwiek innych materiałów (np. plakatów) w celu promocji Kampanii wymaga zgody
+                Organizatora. Organizator ma prawo odmówić wyrażenia zgody na wykorzystanie innych materiałów w ramach popularyzacji
+                Kampanii lub narzucić naniesienie stosownych zmian w materiałach. W przypadku niezastosowania się do niniejszego zapisu
+                Organizator ma prawo wykluczyć dany Podmiot z Kampanii.
+              </Text>
               <Title order={4}>§ 5 Obowiązki zgłoszonych do Kampanii Podmiotów</Title> 1. Podmioty zobowiązują się do współpracy z
               Organizatorem, która pozwoli na sprawne przeprowadzenie Kampanii z pożytkiem dla jej Uczestników ze szczególnym uwzględnieniem
               promocji Kampanii wśród pracowników danego Podmiotu oraz poza nim.
@@ -83,16 +95,21 @@ export const Rules = () => {
                 4. Podmioty przyjmują do wiadomości, że udział w Kampanii wiąże się z wymogami dotyczącymi m.in. comiesięcznego raportowania
                 przejazdów, odbioru i dystrybucji upominków.
               </Text>
-              5. Podmiot niezwłocznie poinformuje Organizatora w przypadku wycofania się z Kampanii, zmiany Koordynatora wewnętrznego itp.
-              <Title order={4}>§ 6 Obowiązki Koordynatorów wewnętrznych</Title> 1. Koordynatorzy wewnętrzni zobowiązują się do stałej
-              współpracy z Organizatorem na potrzeby przeprowadzenia Kampanii, w tym w szczególności do: - wyznaczenia w danym Podmiocie
-              sposobu rejestrowania przejazdów przez Uczestników Kampanii, - pomocy w przeprowadzeniu ankiet, o których mowa w § 8, wśród
-              Uczestników Kampanii, - raportowania zbiorczych wyników za wskazany okres w ciągu 8 dni roboczych od jego zakończenia z
-              wykorzystaniem arkusza kalkulacyjnego przekazanego przez Organizatora, - wewnętrznej weryfikacji rzetelności procesu
-              rejestracji przejazdów, jeśli nastąpi taka potrzeba, - odbioru w wyznaczonym przez Organizatora terminie upominków i ich
-              dystrybucji wśród nagrodzonych Uczestników Kampanii (Koordynator i Organizator mogą ustalić za obopólną zgodą inny tryb
-              odbioru i dystrybucji upominków), - wyznaczenia Zastępcy, który przejmie koordynację nad Kampanią, w tym wszystkie obowiązki
-              związane z jej prowadzeniem, na czas swojej nieobecności z powodu np. urlopu.{' '}
+              <Text>
+                5. Podmiot niezwłocznie poinformuje Organizatora w przypadku wycofania się z Kampanii, zmiany Koordynatora wewnętrznego itp.
+              </Text>
+              <Title order={4}>§ 6 Obowiązki Koordynatorów wewnętrznych</Title>{' '}
+              <Text>
+                1. Koordynatorzy wewnętrzni zobowiązują się do stałej współpracy z Organizatorem na potrzeby przeprowadzenia Kampanii, w tym
+                w szczególności do: - wyznaczenia w danym Podmiocie sposobu rejestrowania przejazdów przez Uczestników Kampanii, - pomocy w
+                przeprowadzeniu ankiet, o których mowa w § 8, wśród Uczestników Kampanii, - raportowania zbiorczych wyników za wskazany
+                okres w ciągu 8 dni roboczych od jego zakończenia z wykorzystaniem arkusza kalkulacyjnego przekazanego przez Organizatora, -
+                wewnętrznej weryfikacji rzetelności procesu rejestracji przejazdów, jeśli nastąpi taka potrzeba, - odbioru w wyznaczonym
+                przez Organizatora terminie upominków i ich dystrybucji wśród nagrodzonych Uczestników Kampanii (Koordynator i Organizator
+                mogą ustalić za obopólną zgodą inny tryb odbioru i dystrybucji upominków), - wyznaczenia Zastępcy, który przejmie
+                koordynację nad Kampanią, w tym wszystkie obowiązki związane z jej prowadzeniem, na czas swojej nieobecności z powodu np.
+                urlopu.
+              </Text>
               <Text>
                 2. Koordynatorzy wewnętrzni są zobowiązani do podania danych osobowych, to jest swojego imienia i nazwiska, służbowego
                 telefonu (ów) i służbowego adresu e-mailowego na potrzeby kontaktu z Organizatorem akcji w celu realizacji Kampanii, działań
@@ -116,38 +133,52 @@ export const Rules = () => {
                 odpowiedzi od Uczestników Kampanii w inny sposób (np. z wykorzystaniem ankiety w formie papierowej przygotowanej przez
                 Organizatora).
               </Text>
-              3. Organizator może wykluczyć Podmiot w przypadku zbyt niskiego zwrotu z ankiet z udziału w dalszej części Kampanii.
-              <Title order={4}>§ 9 Prawa i obowiązki Organizatora</Title> 1. Organizator zobowiązuje się do: - zapewnienia upominków dla
-              najaktywniejszych Uczestników biorących udział w Kampanii przez cały okres jej trwania, - dostarczenia Koordynatorom
-              wewnętrznym materiałów niezbędnych do promowania Kampanii i jej przeprowadzenia, - przekazania upominków Koordynatorom
-              wewnętrznym lub innym przedstawicielom danego Podmiotu w celu ich dalszej dystrybucji wśród nagrodzonych pracowników.
+              <Text>
+                3. Organizator może wykluczyć Podmiot w przypadku zbyt niskiego zwrotu z ankiet z udziału w dalszej części Kampanii.
+              </Text>
+              <Title order={4}>§ 9 Prawa i obowiązki Organizatora</Title>
+              <Text>
+                1. Organizator zobowiązuje się do: - zapewnienia upominków dla najaktywniejszych Uczestników biorących udział w Kampanii
+                przez cały okres jej trwania, - dostarczenia Koordynatorom wewnętrznym materiałów niezbędnych do promowania Kampanii i jej
+                przeprowadzenia, - przekazania upominków Koordynatorom wewnętrznym lub innym przedstawicielom danego Podmiotu w celu ich
+                dalszej dystrybucji wśród nagrodzonych pracowników.
+              </Text>
               <Text>
                 2. Organizator zastrzega sobie prawo do wykluczenia w dowolnym momencie z dalszego udziału w Kampanii Podmiotów, w przypadku
                 których istnieją stosowne z punktu widzenia Organizatora przesłanki świadczące o braku zasadności kontynuacji Kampanii w
                 ramach danego Podmiotu.
               </Text>
-              3. Przykładową sytuacją może być udział w Kampanii zbyt małej liczby Uczestników reprezentujących dany Podmiot. O swojej
-              decyzji Organizator powiadomi niezwłocznie Koordynatorów wewnętrznych.
+              <Text>
+                3. Przykładową sytuacją może być udział w Kampanii zbyt małej liczby Uczestników reprezentujących dany Podmiot. O swojej
+                decyzji Organizator powiadomi niezwłocznie Koordynatorów wewnętrznych.
+              </Text>
               <Text>
                 4. Organizator zastrzega sobie prawo do wykluczenia z udziału w Kampanii Uczestników, których działania są sprzeczne z
                 prawem, dobrymi obyczajami lub niniejszym Regulaminem.
               </Text>
-              5. W celu wyjaśnienia wątpliwości związanych z aktywnością Uczestnika w Kampanii Organizator może kontaktować się z
-              Koordynatorami wewnętrznymi lub bezpośrednio z Uczestnikiem (tylko w przypadku, gdy jest to zgodne z polityką danego Podmiotu)
-              za pomocą otrzymanych od Koordynatorów wewnętrznych za zgodą Uczestnika środków komunikacji (e-mail, telefon) oraz może
-              wymagać od Uczestnika podania informacji dotyczących jego udziału w Kampanii w celu wyjaśnienia ewentualnych wątpliwości.
-              <Title order={4}>§ 10 Zasady rejestracji przejazdów </Title>1. Rejestracji w Kampanii podlegać będą tylko przejazdy rowerowe
-              dokonywane w trakcie podróży do i z pracy, to jest: - na trasie między miejscem zamieszkania a siedzibą Podmiotu oraz trasie
-              powrotnej lub - na trasie między miejscem wskazanym przez uczestnika jako start podróży rowerowej a siedzibą Podmiotu oraz
-              trasie powrotnej.
+              <Text>
+                5. W celu wyjaśnienia wątpliwości związanych z aktywnością Uczestnika w Kampanii Organizator może kontaktować się z
+                Koordynatorami wewnętrznymi lub bezpośrednio z Uczestnikiem (tylko w przypadku, gdy jest to zgodne z polityką danego
+                Podmiotu) za pomocą otrzymanych od Koordynatorów wewnętrznych za zgodą Uczestnika środków komunikacji (e-mail, telefon) oraz
+                może wymagać od Uczestnika podania informacji dotyczących jego udziału w Kampanii w celu wyjaśnienia ewentualnych
+                wątpliwości.
+              </Text>
+              <Title order={4}>§ 10 Zasady rejestracji przejazdów </Title>
+              <Text>
+                1. Rejestracji w Kampanii podlegać będą tylko przejazdy rowerowe dokonywane w trakcie podróży do i z pracy, to jest: - na
+                trasie między miejscem zamieszkania a siedzibą Podmiotu oraz trasie powrotnej lub - na trasie między miejscem wskazanym
+                przez uczestnika jako start podróży rowerowej a siedzibą Podmiotu oraz trasie powrotnej.
+              </Text>
               <Text>
                 2. Uczestnik Kampanii zobowiązany jest do wskazania dystansu na trasie między miejscem zamieszkania a siedzibą Podmiotu lub
                 dystansu na trasie między miejscem startu podróży rowerowej a siedzibą Podmiotu. Dystans ten zostanie obliczony przez
                 Uczestnika za pomocą powszechnie dostępnych narzędzi internetowych/aplikacji. Zapis dotyczy również Uczestników, którzy będą
                 rejestrować przejazdy rowerowe za pomocą aplikacji/narzędzi zapisujących automatycznie trasę przejazdu.
               </Text>
-              3. W Kampanii mogą brać udział Uczestnicy, których dystans między miejscem zamieszkania/startu Podróży a siedzibą Podmiotu
-              (zwanym dystansem w jedną stronę), obliczony na zasadach, o których mowa w pkt. 2, wynosi min. 2 km.
+              <Text>
+                3. W Kampanii mogą brać udział Uczestnicy, których dystans między miejscem zamieszkania/startu Podróży a siedzibą Podmiotu
+                (zwanym dystansem w jedną stronę), obliczony na zasadach, o których mowa w pkt. 2, wynosi min. 2 km.
+              </Text>
               <Text>
                 4. Trasa, o której mowa w pkt. 2, jest co do zasady trasą regularnie wybieraną przez Uczestnika w trakcie dojazdu na rowerze
                 do i z pracy.
@@ -191,9 +222,11 @@ export const Rules = () => {
                 wizyta u lekarza, trening na siłowni itp. i pokonuje w ten sposób dystans inny niż ten, w którym mowa w pkt. 2, rejestruje
                 podróż wykazując dystans między miejscem zamieszkania/startu podróży rowerowej a siedzibą Podmiotu.
               </Text>
-              13. Integralną częścią Regulaminu jest załącznik, który stanowi instrukcję raportowania przejazdów rowerowych z uwzględnieniem
-              różnych przypadków (pełny i niepełny wymiar czasu pracy, praca zdalna, zwolnienia lekarskie, urlopy itp.) z wyszczególnieniem
-              przypadków i stosownymi przykładami.
+              <Text>
+                13. Integralną częścią Regulaminu jest załącznik, który stanowi instrukcję raportowania przejazdów rowerowych z
+                uwzględnieniem różnych przypadków (pełny i niepełny wymiar czasu pracy, praca zdalna, zwolnienia lekarskie, urlopy itp.) z
+                wyszczególnieniem przypadków i stosownymi przykładami.
+              </Text>
               <Title order={4}>§ 11 System nagradzania i upominki</Title> 1. Upominki zostaną przyznane Uczestnikom Kampanii, którzy we
               wskazanym przez Organizatora okresie wykażą się wysoką frekwencją rowerową. Frekwencja rowerowa jest zaokrąglana do pierwszego
               miejsca po przecinku.
@@ -206,9 +239,12 @@ export const Rules = () => {
                 3. Organizator będzie przyznawał zróżnicowane upominki w zależności od wysokości frekwencji rowerowej Uczestników zgodnie z
                 zapisami pkt. 2. Organizator dołoży starań, żeby nagrodzić drobnymi upominkami jak największą grupę Uczestników.
               </Text>
-              4. Organizator może według swojego uznania przyznać dowolne upominki także pozostałym Uczestnikom oraz nagrodzić Uczestników
-              dodatkowo stosując wybrane przez siebie kryteria (np. nagrodzić osoby, które osiągnęły wskazaną minimalną frekwencję rowerową
-              oraz wykazują minimalny wskazany dystans do pokonania między miejscem zamieszkania/startem podróży a siedzibą Podmiotu).
+              <Text>
+                4. Organizator może według swojego uznania przyznać dowolne upominki także pozostałym Uczestnikom oraz nagrodzić Uczestników
+                dodatkowo stosując wybrane przez siebie kryteria (np. nagrodzić osoby, które osiągnęły wskazaną minimalną frekwencję
+                rowerową oraz wykazują minimalny wskazany dystans do pokonania między miejscem zamieszkania/startem podróży a siedzibą
+                Podmiotu).
+              </Text>
               <Text>
                 5. Organizator może przeznaczyć dodatkową pulę nagród np. do rozlosowania wśród wszystkich lub wybranych uczestników
                 Kampanii z danej grupy Podmiotów (np. wśród uczestników z 15 Podmiotów, w których zanotowano najwyższą średnią frekwencję
@@ -250,21 +286,28 @@ export const Rules = () => {
                 od otrzymania od Organizatora informacji o takiej możliwości, Organizator zastrzega sobie prawo do niewydania upominków w
                 terminie późniejszym. W takiej sytuacji upominki wrócą do ogólnej puli.
               </Text>
-              14. W przypadku powtarzających się opóźnień w odbiorze upominków ze strony Podmiotu Organizator może wykluczyć dany Podmiot z
-              dalszego udziału w Kampanii.
-              <Title order={4}>§ 12 Postanowienia końcowe</Title> 1. Organizator nie ponosi odpowiedzialności za: - skutki prawne działań
-              podjętych przez Podmiot na rzecz przeprowadzenia Kampanii wśród swoich pracowników, w tym za ewentualne konsekwencje prawne
-              wynikające z korzystania z aplikacji lub innych narzędzi elektronicznych na potrzeby rejestracji przejazdów, - następstwa
-              działań lub zdarzeń będących konsekwencjami uczestnictwa w Kampanii (np. odpowiedzialność odszkodowawcza, konsekwencje
-              zdrowotne, prawne, finansowe, szkody na mieniu i ciele, zniszczenia, kradzieże itp.), - zaginięcie/zniszczenie upominków w
-              przypadku przekazania upominków Koordynatorowi wewnętrznemu w sposób inny niż bezpośredni (niebezpośredni sposób przekazania
-              upominków może być uzgodniony między Organizatorem a Koordynatorem wewnętrznym na prośbę Koordynatora wewnętrznego), -
-              przebieg Kampanii w ramach danego Podmiotu (np. za jej promocję), w tym za pracę Koordynatorów wewnętrznych.
+              <Text>
+                14. W przypadku powtarzających się opóźnień w odbiorze upominków ze strony Podmiotu Organizator może wykluczyć dany Podmiot
+                z dalszego udziału w Kampanii.
+              </Text>
+              <Title order={4}>§ 12 Postanowienia końcowe</Title>{' '}
+              <Text>
+                1. Organizator nie ponosi odpowiedzialności za: - skutki prawne działań podjętych przez Podmiot na rzecz przeprowadzenia
+                Kampanii wśród swoich pracowników, w tym za ewentualne konsekwencje prawne wynikające z korzystania z aplikacji lub innych
+                narzędzi elektronicznych na potrzeby rejestracji przejazdów, - następstwa działań lub zdarzeń będących konsekwencjami
+                uczestnictwa w Kampanii (np. odpowiedzialność odszkodowawcza, konsekwencje zdrowotne, prawne, finansowe, szkody na mieniu i
+                ciele, zniszczenia, kradzieże itp.), - zaginięcie/zniszczenie upominków w przypadku przekazania upominków Koordynatorowi
+                wewnętrznemu w sposób inny niż bezpośredni (niebezpośredni sposób przekazania upominków może być uzgodniony między
+                Organizatorem a Koordynatorem wewnętrznym na prośbę Koordynatora wewnętrznego), - przebieg Kampanii w ramach danego Podmiotu
+                (np. za jej promocję), w tym za pracę Koordynatorów wewnętrznych.
+              </Text>
               <Text>
                 2. Organizator zaleca udział w Kampanii z uwzględnieniem możliwości zdrowotnych i fizycznych każdego z Uczestników.
               </Text>
-              3. Organizator dopuszcza zmianę niniejszego Regulaminu, jeśli zaistnieją do tego stosowne przesłanki. O takiej zmianie
-              Organizator poinformuje Koordynatorów wewnętrznych w najkrótszym możliwym terminie.
+              <Text>
+                3. Organizator dopuszcza zmianę niniejszego Regulaminu, jeśli zaistnieją do tego stosowne przesłanki. O takiej zmianie
+                Organizator poinformuje Koordynatorów wewnętrznych w najkrótszym możliwym terminie.
+              </Text>
               <Text>
                 4. Prawo do podjęcia decyzji w sprawach nieuregulowanych niniejszym Regulaminem oraz prawo do interpretacji zapisów
                 Regulaminu posiada Organizator.
