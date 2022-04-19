@@ -7,7 +7,7 @@ import { render, screen } from '~/tests/utils';
 import { LogIn } from './LogIn';
 
 describe('LogIn component', () => {
-  describe('button', () => {
+  describe('google button', () => {
     it('is not disabled', () => {
       render(<LogIn />);
       const loginButton = screen.getByText('Kontynuuj przez Google');
