@@ -1,5 +1,5 @@
-import { Button, Container, Group, PasswordInput, Stack, Text, TextInput, Modal } from '@mantine/core';
-import React, { useState } from 'react';
+import { Button, Container, Group, Modal, PasswordInput, Stack, Text, TextInput } from '@mantine/core';
+import React from 'react';
 
 import { GoogleButton } from '~/components/GoogleButton';
 import { Logo } from '~/components/Logo';
@@ -12,7 +12,7 @@ export const LogIn = () => {
       centered
       withCloseButton={false}
       opened
-      onClose={() => { }}
+      onClose={() => { /* do not close it */ }}
     >
       {
         <Stack justify="space-around" spacing="xl" style={{ marginTop: 50, marginBottom: 50 }}>
