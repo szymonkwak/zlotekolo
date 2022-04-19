@@ -11,9 +11,13 @@ datasource db {
 }
 
 model User {
-  id     String  @id @default(uuid())
-  email  String  @unique
-  points Point[]
+  id             String  @id @default(uuid())
+  username       String
+  nickname       String
+  email          String  @unique
+  avatar         String
+  toWorkDistance Int     @default(2000)
+  points         Point[]
 }
 
 model Point {
