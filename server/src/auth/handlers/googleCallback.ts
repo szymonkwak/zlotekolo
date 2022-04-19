@@ -10,7 +10,6 @@ if (!process.env.SECRET_TOKEN) {
 }
 
 export const googleCallback: RequestHandler = (req, res) => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const accessToken = jwt.sign({ data: req.user?.id }, process.env.SECRET_TOKEN!, { expiresIn: '12h' });
+  const accessToken = jwt.sign({ userId: req.user?.id }, process.env.SECRET_TOKEN, { expiresIn: '12h' });
   res.header({ accessToken }).redirect(ROUTE_AFTER_SUCCESSFUL_LOGIN);
 };
