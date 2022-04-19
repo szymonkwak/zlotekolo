@@ -16,7 +16,6 @@ describe('Get me handler', () => {
 
     const response = await request.get('/api/auth/me');
 
-    console.log('me', response.body);
     expect(response.status).toBe(200);
     expect(response.body.nickname).toBe('Krzychu');
   });

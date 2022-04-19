@@ -2,8 +2,8 @@
 import { request } from '~/common/tests/utils';
 
 describe('Get User handler', () => {
-  it('update user data', async () => {
-    prismaMock.user.findFirst.mockResolvedValue({
+  it('receive response when send request with valid data', async () => {
+    prismaMock.user.upsert.mockResolvedValue({
       id: 'sample-id',
       username: 'username',
       nickname: 'nickname',
@@ -25,6 +25,24 @@ describe('Get User handler', () => {
     const response = await request.post('/api/users').set('Accept', 'application/json').send(payload);
 
     expect(response.status).toBe(200);
-    // expect(response.body.username).toBeTruthy();
+    expect(response.body.username).toBe('username');
+  });
+
+  it('receive 400 code respond when send request with invalid data', async () => {
+    prismaMock.user.upsert.mockResolvedValue({
+      id: 'sample-id',
+      username: 'username',
+      nickname: 'nickname',
+      email: 'username@domain.com',
+      avatar: 'sample-avatar',
+      surname: 'lastname',
+      contractType: 'mandatory conract',
+      toWorkDistance: 4,
+    });
+
+    const response = await request.post('/api/users').set('Accept', 'application/json').send();
+
+    expect(response.status).toBe(400);
+    expect(response.text).toBeTruthy();
   });
 });

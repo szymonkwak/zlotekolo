@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 
 import { authRouter } from './auth/router';
-import { userRouter } from './common/user/routes';
+import { userRouter } from './scoring/routes';
 
 dotenv.config();
 
