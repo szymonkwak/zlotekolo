@@ -16,7 +16,7 @@ export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
     update: { username, surname, nickname, contractType, toWorkDistance, avatar },
     create: { username, surname, nickname, contractType, toWorkDistance, email, avatar },
   });
-  res.send(user);
+  res.json(user);
 };
 export const getAllUsers: RequestHandler = (req, res) => {
   res.send('ok');

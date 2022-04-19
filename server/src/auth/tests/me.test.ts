@@ -13,8 +13,10 @@ describe('Get me handler', () => {
       contractType: 'mandatory conract',
       toWorkDistance: 4,
     });
+
     const response = await request.get('/api/auth/me');
 
+    console.log('me', response.body);
     expect(response.status).toBe(200);
     expect(response.body.nickname).toBe('Krzychu');
   });
