@@ -6,19 +6,22 @@ import { validateUser } from './../validations/userValidate';
 
 export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
   const { error } = validateUser(req.body);
-  console.log('user', req.user);
 
   if (error) return res.status(400).send(error.details[0]?.message);
 
-  const { username, surname, nickname, contractType, toWorkDistance, email, avatar } = req.body;
+  if (!req.user) return res.status(401).send('brak autoryzacji');
 
-  const user = await prisma.user.upsert({
-    where: { email },
-    update: { username, surname, nickname, contractType, toWorkDistance, avatar },
-    create: { username, surname, nickname, contractType, toWorkDistance, email, avatar },
+  const { contractType, toWorkDistance, nickname } = req.body;
+  const nick = nickname.length > 0 ? nickname : req.user.nickname;
+  const user = await prisma.user.update({
+    where: { email: req.user.email },
+    data: {
+      nickname: nick,
+      contractType,
+      toWorkDistance,
+      avatar: req.user.avatar,
+      isConfigured: true,
+    },
   });
   res.json(user);
-};
-export const getAllUsers: RequestHandler = (req, res) => {
-  res.send('ok');
 };

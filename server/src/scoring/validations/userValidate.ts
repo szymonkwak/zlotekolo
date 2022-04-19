@@ -2,11 +2,7 @@
 import Joi from 'joi';
 
 const schema = Joi.object().keys({
-  username: Joi.string().required(),
-  email: Joi.string().email().required(),
-  nickname: Joi.string().required(),
-  surname: Joi.string(),
-  avatar: Joi.string().required(),
+  nickname: Joi.string().allow(null, ''),
   contractType: Joi.string().required(),
   toWorkDistance: Joi.number().required(),
 });

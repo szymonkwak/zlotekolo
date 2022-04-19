@@ -1,9 +1,9 @@
 ﻿import { Router } from 'express';
 
-import { getAllUsers, getUserMandatoryInfo } from './handlers/userHandlers';
+import { authMiddleware } from './../auth/middleware/authMiddleware';
+import { getUserMandatoryInfo } from './handlers/userHandlers';
 
 const userRouter = Router();
-
-userRouter.route('/').post(getUserMandatoryInfo).get(getAllUsers);
+userRouter.put('/users', authMiddleware, getUserMandatoryInfo);
 
 export { userRouter };

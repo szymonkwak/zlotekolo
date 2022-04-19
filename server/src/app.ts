@@ -19,7 +19,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use('/api', express.json());
 app.use('/api/auth', authRouter);
-app.use('/api/users', userRouter);
+app.use('/api/scoring', userRouter);
 
 app.get('/', (req, res) => {
   res.send('ok');

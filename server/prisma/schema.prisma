@@ -11,14 +11,14 @@ datasource db {
 }
 
 model User {
-  id     String  @id @default(uuid())
+  id             String  @id @default(uuid())
   username       String
   nickname       String
-  surname        String?
   email          String  @unique
   avatar         String
   contractType   String?
-  toWorkDistance Float     @default(2000)
+  isConfigured   Boolean @default(false)
+  toWorkDistance Int     @default(2000)
   points         Point[]
 }
 
