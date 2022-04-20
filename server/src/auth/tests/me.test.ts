@@ -17,7 +17,7 @@ describe('get me handler', () => {
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
-      contractType: 'mandatory conract',
+      contractType: 'OTHER',
       toWorkDistance: 4,
       isConfigured: false,
     });

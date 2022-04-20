@@ -6,7 +6,7 @@ const sampleToken =
 
 describe('Get User handler', () => {
   it('receive response when send request with valid data', async () => {
-    prismaMock.user.update.mockResolvedValue({
+    prismaMock.user.findUnique.mockResolvedValue({
       id: 'sample-id',
       username: 'Krzysztof',
       nickname: 'Krzychu',
@@ -16,12 +16,19 @@ describe('Get User handler', () => {
       toWorkDistance: 4,
       isConfigured: false,
     });
-    const payload = {
+
+    prismaMock.user.update.mockResolvedValue({
       id: 'sample-id',
       username: 'Krzysztof',
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
+      contractType: 'B2B',
+      toWorkDistance: 4,
+      isConfigured: true,
+    });
+    const payload = {
+      nickname: 'Krzychu',
       contractType: 'B2B',
       toWorkDistance: 4,
     };
@@ -32,11 +39,21 @@ describe('Get User handler', () => {
   });
 
   it('receive 400 code respond when send request with invalid data', async () => {
+    prismaMock.user.findUnique.mockResolvedValue({
+      id: 'sample-id',
+      username: 'Krzysztof',
+      nickname: 'Krzychu',
+      email: 'krzy@szt.of',
+      avatar: 'sample-avatar',
+      contractType: 'B2B',
+      toWorkDistance: 4,
+      isConfigured: false,
+    });
     prismaMock.user.update.mockResolvedValue({
       id: 'sample-id',
-      username: 'username',
-      nickname: 'nickname',
-      email: 'mateusz.zajac@motorolasolutions.com',
+      username: 'Krzysztof',
+      nickname: 'Krzychu',
+      email: 'krzy@szt.of',
       avatar: 'sample-avatar',
       contractType: 'B2B',
       toWorkDistance: 4,

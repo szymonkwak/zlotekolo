@@ -9,8 +9,6 @@ export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
 
   if (error) return res.status(400).send(error.details[0]?.message);
 
-  // if (!req.user) return res.status(401).send('brak autoryzacji');
-
   const { contractType, toWorkDistance, nickname } = req.body;
   const nick = nickname?.length > 0 ? nickname : req.user?.nickname;
   const user = await prisma.user.update({
