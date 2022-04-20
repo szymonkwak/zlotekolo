@@ -1,5 +1,4 @@
-﻿import { User } from '@prisma/client';
-import Joi from 'joi';
+﻿import Joi from 'joi';
 
 const schema = Joi.object().keys({
   nickname: Joi.string().optional(),
