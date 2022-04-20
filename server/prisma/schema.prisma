@@ -16,7 +16,7 @@ model User {
   nickname       String
   email          String  @unique
   avatar         String
-  contractType   ContractType @default(EMPLOYEE_CONTRACT)
+  contractType   ContractType @default(FULL_TIME)
   isConfigured   Boolean @default(false)
   toWorkDistance Int     @default(2000)
   points         Point[]
@@ -30,7 +30,6 @@ model Point {
   userId     String?
 }
 enum ContractType {
-  EMPLOYEE_CONTRACT
-  B2B
+  FULL_TIME
   OTHER
 }

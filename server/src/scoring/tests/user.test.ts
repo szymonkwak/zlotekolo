@@ -12,7 +12,7 @@ describe('Get User handler', () => {
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
-      contractType: 'B2B',
+      contractType: 'OTHER',
       toWorkDistance: 4,
       isConfigured: false,
     });
@@ -23,13 +23,13 @@ describe('Get User handler', () => {
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
-      contractType: 'B2B',
+      contractType: 'OTHER',
       toWorkDistance: 4,
       isConfigured: true,
     });
     const payload = {
       nickname: 'Krzychu',
-      contractType: 'B2B',
+      contractType: 'OTHER',
       toWorkDistance: 4,
     };
     const response = await request.put('/api/scoring/users').send(payload).set('accessToken', sampleToken);
@@ -45,7 +45,7 @@ describe('Get User handler', () => {
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
-      contractType: 'B2B',
+      contractType: 'OTHER',
       toWorkDistance: 4,
       isConfigured: false,
     });
@@ -55,7 +55,7 @@ describe('Get User handler', () => {
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
-      contractType: 'B2B',
+      contractType: 'OTHER',
       toWorkDistance: 4,
       isConfigured: false,
     });
