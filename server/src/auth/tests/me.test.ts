@@ -17,7 +17,9 @@ describe('get me handler', () => {
       nickname: 'Krzychu',
       email: 'krzy@szt.of',
       avatar: 'sample-avatar',
+      contractType: 'OTHER',
       toWorkDistance: 4,
+      isConfigured: false,
     });
 
     const response = await request.get('/api/auth/me').set('accessToken', sampleToken);
