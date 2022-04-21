@@ -40,8 +40,8 @@ model Trip {
   date      DateTime @default(now())
   type      Destination @default(TO_WORK)
   Duration  DateTime
-  user      User @relation(fields: [userId], references: [id])
-  userId    String
+  User      User? @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 enum Destination {
