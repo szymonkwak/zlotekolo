@@ -20,6 +20,7 @@ model User {
   isConfigured   Boolean @default(false)
   toWorkDistance Int     @default(2000)
   points         Point[]
+  trips          Trip[]
 }
 
 model Point {
@@ -32,4 +33,18 @@ model Point {
 enum ContractType {
   FULL_TIME
   OTHER
+}
+
+model Trip {
+  id        String   @id @default(uuid())
+  date      DateTime @default(now())
+  type      Destination @default(TO_WORK)
+  Duration  DateTime
+  user      User @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+enum Destination {
+  TO_HOME
+  TO_WORK
 }
