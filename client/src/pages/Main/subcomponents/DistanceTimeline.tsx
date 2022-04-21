@@ -1,8 +1,8 @@
-import { Paper, Text, Timeline, Title } from '@mantine/core';
+import { Box, Text, Timeline, Title } from '@mantine/core';
 
 const DistanceTimeline = () => {
   return (
-    <Paper withBorder p="sm" m="sm" sx={{ maxWidth: 500 }}>
+    <Box py="sm" m="sm">
       <Title order={3} sx={{ marginBottom: 10 }}>
         Wykręcony dystans:
       </Title>
@@ -28,7 +28,7 @@ const DistanceTimeline = () => {
           </Text>
         </Timeline.Item>
       </Timeline>
-    </Paper>
+    </Box>
   );
 };
 
