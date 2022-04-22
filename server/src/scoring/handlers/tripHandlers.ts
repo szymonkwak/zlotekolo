@@ -14,22 +14,20 @@ export const addTrip: RequestHandler = async (req, res) => {
     select: { trips: { where: { dayOfTrip: tripDay, type: tripType } } },
   });
 
-  console.log('exist', alreadyExistTrip);
-
   if (alreadyExistTrip !== null && alreadyExistTrip.trips?.length > 0) {
-    return res.status(400).send('trip for this day already exist');
+    return res.status(400).send('trasa została dodana wcześniej');
   }
 
   if (tripType.includes('TO_WORK')) {
     if (today !== dayOfTrip) {
-      return res.status(400).send('too late!');
+      return res.status(400).send('już nie możesz dodać trasy, za poźno');
     }
   }
 
   if (tripType.includes('TO_HOME')) {
     const prevDay = parseInt(today!) - 1;
     if (today !== dayOfTrip && dayOfTrip !== prevDay.toString()) {
-      return res.status(400).send('too late!');
+      return res.status(400).send('już nie możesz dodać trasy, za poźno');
     }
   }
 
