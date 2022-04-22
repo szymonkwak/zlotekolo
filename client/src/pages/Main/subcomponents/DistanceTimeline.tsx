@@ -1,4 +1,4 @@
-import { Box, Text, Timeline, Title } from '@mantine/core';
+import { Box, Timeline, Title } from '@mantine/core';
 
 const DistanceTimeline = () => {
   return (
@@ -8,25 +8,15 @@ const DistanceTimeline = () => {
       </Title>
       <Timeline active={1} bulletSize={24}>
         <Timeline.Item title="25km">
-          <Text size="xs" mt={4}>
-            14-go Maja
-          </Text>
+          <Box style={{ height: 40 }} />
         </Timeline.Item>
         <Timeline.Item title="50km">
-          <Text size="xs" mt={4}>
-            20-go Maja
-          </Text>
+          <Box style={{ height: 40 }} />
         </Timeline.Item>
         <Timeline.Item title="75km">
-          <Text size="xs" mt={4}>
-            23-go Maja
-          </Text>
+          <Box style={{ height: 40 }} />
         </Timeline.Item>
-        <Timeline.Item title="25km">
-          <Text size="xs" mt={4}>
-            30-go Maja
-          </Text>
-        </Timeline.Item>
+        <Timeline.Item title="100km"></Timeline.Item>
       </Timeline>
     </Box>
   );

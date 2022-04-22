@@ -1,12 +1,12 @@
-import { Avatar, Box, Title } from '@mantine/core';
+import { Avatar, Box, Text, Title } from '@mantine/core';
 
-const UserData = () => {
+const UserData = ({ user }: any) => {
   return (
     <Box sx={{ display: 'flex', margin: 10 }}>
-      <Avatar radius="xl" size="lg" src="//TODO" />
-      <Box sx={{ marginLeft: 10 }}>
-        <Title order={2}>TODO name</Title>
-        <Title order={5}>TODO locaton</Title>
+      <Avatar radius="xl" size="lg" src={user.avatar} />
+      <Box ml="md">
+        <Title order={2}>{user.nickname}</Title>
+        <Text>{user.username}</Text>
       </Box>
     </Box>
   );

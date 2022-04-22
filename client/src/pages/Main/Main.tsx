@@ -1,6 +1,8 @@
 import { Center, Divider, Paper } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
+import { useMe } from '~/api/hooks/useMe';
+import { CenteredLoader } from '~/components/Loader/CenteredLoader';
 import { Logo } from '~/components/Logo';
 
 import DisplayDesktop from './subcomponents/Display/DisplayDesktop';
@@ -9,7 +11,10 @@ import { isMoblieView } from './subcomponents/Display/isMobileView';
 import UserData from './subcomponents/UserData';
 
 const Main = () => {
+  const user = useMe();
   const [mobileView, setMobileView] = useState(false);
+
+  console.log(user);
 
   useEffect(() => {
     setMobileView(isMoblieView());
@@ -20,17 +25,23 @@ const Main = () => {
     };
   }, [mobileView]);
 
+  if (user.isError) return <div>TODO nie można pobrać danych</div>;
+
   return (
     <>
       <Center m="md">
         <Logo />
       </Center>
 
-      <Paper p="xs">
-        <UserData />
-        <Divider size="sm" />
-        {mobileView ? <DisplayMobile /> : <DisplayDesktop />}
-      </Paper>
+      {user.isLoading ? (
+        <CenteredLoader />
+      ) : (
+        <Paper p="xs">
+          <UserData user={user.data} />
+          <Divider size="sm" />
+          {mobileView ? <DisplayMobile /> : <DisplayDesktop />}
+        </Paper>
+      )}
     </>
   );
 };
