@@ -1,5 +1,8 @@
 import { ContractType, User, Point } from "@prisma/client";
 
+const isBusinesDay = (day: Date) => day.getDay() >= 1 && day.getDay() < 6;
+const isSameYear = (a: Date, b: Date) => a.getFullYear() === b.getFullYear();
+const isSameMonth = (a: Date, b: Date) => a.getMonth() === b.getMonth();
 
 const calculateBusinessDays = () => {
   const day = new Date();
@@ -8,34 +11,30 @@ const calculateBusinessDays = () => {
   let businessDays = 0;
 
   while (day.getMonth() === month) {
-    if (day.getDay() >= 1 && day.getDay() < 6) {
+    if (isBusinesDay(day)) {
       businessDays += 1;
     }
-
     day.setDate(day.getDate() + 1);
   }
   return businessDays;
 }
 
-export const calculateScore = (user: User & { points: Point[] }): number => {
-
+const countPoints = (points: Point[]): number => {
   const today = new Date();
+  const eligiblePoints = points.filter((point) => {
+    const tripDate = point.scoredAt;
+    return isSameYear(tripDate, today) && isSameMonth(tripDate, today) && isBusinesDay(tripDate)
+  });
+  return eligiblePoints.length;
+}
 
-
+export const calculateScore = (user: User & { points: Point[] }): number => {
+  const scoredPoints = countPoints(user.points);
 
   if (user.contractType === ContractType.FULL_TIME) {
-    const filterPoints = user.points.filter((point) => {
-
-      const date = point.scoredAt;
-
-      if (date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && (date.getDay() >= 1 && date.getDay() < 6)) {
-
-      }
-    })
-  })
-
-  return score;
-} else {
-  return 1;
-  }
+    const totalMonthlyScore = calculateBusinessDays() * 2;
+    return scoredPoints / totalMonthlyScore;
+  } else {
+    return scoredPoints / 30;
+  };
 };
