@@ -1,4 +1,4 @@
-import { ContractType, User, Point } from "@prisma/client";
+import { ContractType, Point,User } from "@prisma/client";
 
 const isBusinesDay = (day: Date) => day.getDay() >= 1 && day.getDay() < 6;
 const isSameYear = (a: Date, b: Date) => a.getFullYear() === b.getFullYear();
@@ -36,5 +36,5 @@ export const calculateScore = (user: User & { points: Point[] }): number => {
     return scoredPoints / totalMonthlyScore;
   } else {
     return scoredPoints / 30;
-  };
+  }
 };
