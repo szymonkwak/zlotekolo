@@ -1,4 +1,4 @@
-import { Button, Modal, ScrollArea, Text, Title, TypographyStylesProvider } from '@mantine/core';
+import { Anchor, Modal, ScrollArea, Text, Title, TypographyStylesProvider } from '@mantine/core';
 import { useState } from 'react';
 
 export const Rules = () => {
@@ -316,9 +316,13 @@ export const Rules = () => {
           </TypographyStylesProvider>
         </ScrollArea>
       </Modal>
-      <Button sx={{ padding: 0 }} variant="subtle" onClick={() => setOpened(true)}>
-        Akceptuję regulamin konkursu
-      </Button>
+      <Text>
+        Akceptuję
+        <Anchor sx={{ padding: 5 }} onClick={() => setOpened(true)}>
+          regulamin
+        </Anchor>
+        konkursu
+      </Text>
     </>
   );
 };

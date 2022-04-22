@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Logo } from '../../components/Logo';
 import { Paths } from '../../routes/paths';
+import ErrorMessage from '../Configuration/ErrorMessage';
+import { boxStyles, buttonBoxStyles, formBoxStyles, paperStyles } from './Configuration.styles';
 import { Header } from './Header/Header';
 import { InfoCircle } from './Info/Info';
 import { Rules } from './Rules/Rules';
@@ -13,17 +15,20 @@ export const Configuration = () => {
   const [nickname, setNickname] = useState('');
   const [contractType, setContractType] = useState<string | null>(null);
   const [toWorkDistance, setToWorkDistance] = useState<number | undefined>(2);
-
   const [acceptRules, setAcceptRules] = useState(false);
   const [dataProccesingAgreement, setDataProccesingAgreement] = useState(false);
+  const [errorDialogOpen, setErrorDialogOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const mandatoryInfo = { nickname, contractType, toWorkDistance };
-
-    await axios.post(`${process.env.VITE_SERVER_URL}/api/users/`, mandatoryInfo);
-    navigate(Paths.Home);
+    try {
+      const mandatoryInfo = { nickname, contractType, toWorkDistance };
+      await axios.post(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo);
+      navigate(Paths.Home);
+    } catch (err) {
+      if (err) setErrorDialogOpen(true);
+    }
   };
 
   return (
@@ -31,46 +36,24 @@ export const Configuration = () => {
       <Box
         sx={(theme) => ({
           backgroundColor: theme.colors.dark[3],
-          height: '100vh',
-          width: 'auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
         })}
+        style={boxStyles}
       >
         <Paper
+          style={paperStyles}
           sx={(theme) => ({
-            width: '80rem',
-            height: '53rem',
-            display: 'grid',
-            gridTemplateColumns: '1fr 3fr 1fr',
-            padding: '3rem',
             boxShadow: theme.shadows.xl,
-
-            '@media (max-width: 755px) and (min-width: 200px)': {
-              gridTemplateColumns: '1fr',
-              gridGap: '5px',
-              width: '95%',
-              height: '97%',
-              padding: '40px 20px',
-            },
           })}
         >
           <Box>
             <Logo />
           </Box>
 
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
+          <Box style={formBoxStyles}>
             <Box>
               <Header title="Skonfiguruj swoje konto" />
-              <Space h="xl" />
-              <Space h="xl" />
+              <ErrorMessage message="Błąd" open={errorDialogOpen} setOpen={setErrorDialogOpen} />
+              <Space h="xl" />;
               <Group>
                 <TextInput
                   size="lg"
@@ -102,6 +85,7 @@ export const Configuration = () => {
                   label="Długość drogi do pracy (km)"
                   precision={1}
                   decimalSeparator=","
+                  min={2}
                   step={0.1}
                   required
                   value={toWorkDistance}
@@ -123,14 +107,8 @@ export const Configuration = () => {
               />
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'flex-end',
-            }}
-          >
-            <Button type="submit" color="yellow" size="lg">
+          <Box style={buttonBoxStyles}>
+            <Button type="submit" size="lg">
               ROZPOCZNIJ
             </Button>
           </Box>

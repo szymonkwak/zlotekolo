@@ -2,11 +2,11 @@ import { ActionIcon, Popover, Text } from '@mantine/core';
 import { useState } from 'react';
 import { AlertCircle } from 'tabler-icons-react';
 
-type InfoProps = {
+type InfoCircleProps = {
   info: string;
 };
 
-export const InfoCircle = ({ info }: InfoProps) => {
+export const InfoCircle = ({ info }: InfoCircleProps) => {
   const [opened, setOpened] = useState(false);
 
   return (
@@ -30,7 +30,7 @@ export const InfoCircle = ({ info }: InfoProps) => {
           onMouseEnter={() => setOpened(true)}
           onMouseLeave={() => setOpened(false)}
         >
-          <AlertCircle size={15} style={{ color: '#73E977' }}></AlertCircle>
+          <AlertCircle size={20} style={{ color: 'lime' }}></AlertCircle>
         </ActionIcon>
       }
     >
