@@ -16,6 +16,8 @@ model User {
   nickname       String
   email          String  @unique
   avatar         String
+  contractType   ContractType @default(FULL_TIME)
+  isConfigured   Boolean @default(false)
   toWorkDistance Int     @default(2000)
   points         Point[]
 }
@@ -26,4 +28,8 @@ model Point {
   receivedAt DateTime @default(now())
   User       User?    @relation(fields: [userId], references: [id])
   userId     String?
+}
+enum ContractType {
+  FULL_TIME
+  OTHER
 }

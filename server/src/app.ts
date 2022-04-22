@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 
 import { authRouter } from './auth/router';
+import { scoringRouter } from './scoring/routes';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use('/api', express.json());
 app.use('/api/auth', authRouter);
+app.use('/api/scoring', scoringRouter);
 
 app.get('/', (req, res) => {
   res.send('ok');
