@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useMe } from '~/api/hooks/useMe';
 import { CenteredLoader } from '~/components/Loader/CenteredLoader';
 import { Logo } from '~/components/Logo';
+import { ErrorPage } from '~/pages/Error/ErrorPage';
 
 import DisplayDesktop from './subcomponents/Display/DisplayDesktop';
 import DisplayMobile from './subcomponents/Display/DisplayMobile';
@@ -25,7 +26,7 @@ const Main = () => {
     };
   }, [mobileView]);
 
-  if (user.isError) return <div>TODO nie można pobrać danych</div>;
+  if (user.isError) return <ErrorPage />;
 
   return (
     <>
