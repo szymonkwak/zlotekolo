@@ -3,21 +3,20 @@
 import { prisma } from '~/common/prisma';
 
 export const addTrip: RequestHandler = async (req, res) => {
-  const { date, duration, tripType } = req.body;
+  const { date, tripType } = req.body;
 
   const tripDay = new Date(date);
-  const time = new Date(duration);
   const today = getShortDate(new Date().toISOString());
   const dayOfTrip = getShortDate(tripDay.toISOString());
 
   const alreadyExistTrip = await prisma.user.findUnique({
-    where: { email: 'krzy@szt.of' },
-    select: { trips: { where: { date: tripDay, type: tripType } } },
+    where: { email: req.user?.email },
+    select: { trips: { where: { dayOfTrip: tripDay, type: tripType } } },
   });
 
   console.log('exist', alreadyExistTrip);
 
-  if (alreadyExistTrip!.trips?.length > 0 && alreadyExistTrip !== null) {
+  if (alreadyExistTrip !== null && alreadyExistTrip.trips?.length > 0) {
     return res.status(400).send('trip for this day already exist');
   }
 
@@ -29,22 +28,21 @@ export const addTrip: RequestHandler = async (req, res) => {
 
   if (tripType.includes('TO_HOME')) {
     const prevDay = parseInt(today!) - 1;
-
     if (today !== dayOfTrip && dayOfTrip !== prevDay.toString()) {
       return res.status(400).send('too late!');
     }
   }
 
   const trip = await prisma.user.update({
-    where: { email: 'krzy@szt.of' },
-    data: { trips: { create: { date: tripDay, Duration: time, type: tripType } } },
+    where: { email: req.user?.email },
+    data: { trips: { create: { dayOfTrip: tripDay, type: tripType, createdAt: new Date().toISOString() } } },
   });
 
   return res.status(201).send(trip);
 };
 export const getAllTrips: RequestHandler = async (req, res) => {
   const trip = await prisma.user.findUnique({
-    where: { email: 'krzy@szt.of' },
+    where: { email: req.user?.email },
     include: { trips: true },
   });
 
