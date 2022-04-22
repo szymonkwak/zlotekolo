@@ -12,8 +12,14 @@ export const addTrip: RequestHandler = async (req, res) => {
 
   const alreadyExistTrip = await prisma.user.findUnique({
     where: { email: 'krzy@szt.of' },
-    select: { trips: { where: { date: new Date('2022:04-21T00:00:000Z') } } },
+    select: { trips: { where: { date: tripDay, type: tripType } } },
   });
+
+  console.log('exist', alreadyExistTrip);
+
+  if (alreadyExistTrip!.trips?.length > 0 && alreadyExistTrip !== null) {
+    return res.status(400).send('trip for this day already exist');
+  }
 
   if (tripType.includes('TO_WORK')) {
     if (today !== dayOfTrip) {
@@ -28,8 +34,6 @@ export const addTrip: RequestHandler = async (req, res) => {
       return res.status(400).send('too late!');
     }
   }
-
-  console.log('exist', alreadyExistTrip);
 
   const trip = await prisma.user.update({
     where: { email: 'krzy@szt.of' },
