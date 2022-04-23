@@ -22,6 +22,8 @@ describe('get me handler', () => {
       isConfigured: false,
     });
 
+    prismaMock.trip.findMany.mockResolvedValue([]);
+
     const response = await request.get('/api/auth/me').set('accessToken', sampleToken);
 
     expect(response.status).toBe(200);
