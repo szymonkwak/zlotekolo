@@ -1,4 +1,4 @@
-import { ContractType, Point,User } from "@prisma/client";
+import { ContractType, Trip, User } from "@prisma/client";
 
 const isBusinesDay = (day: Date) => day.getDay() >= 1 && day.getDay() < 6;
 const isSameYear = (a: Date, b: Date) => a.getFullYear() === b.getFullYear();
@@ -19,22 +19,22 @@ const calculateBusinessDays = () => {
   return businessDays;
 }
 
-const countPoints = (points: Point[]): number => {
+const countTrips = (trips: Trip[]): number => {
   const today = new Date();
-  const eligiblePoints = points.filter((point) => {
-    const tripDate = point.scoredAt;
+  const eligibleTrips = trips.filter((trip) => {
+    const tripDate = trip.dayOfTrip;
     return isSameYear(tripDate, today) && isSameMonth(tripDate, today) && isBusinesDay(tripDate)
   });
-  return eligiblePoints.length;
+  return eligibleTrips.length;
 }
 
-export const calculateScore = (user: User & { points: Point[] }): number => {
-  const scoredPoints = countPoints(user.points);
+export const calculateScore = (user: User & { trips: Trip[] }): number => {
+  const tripsCount = countTrips(user.trips);
 
   if (user.contractType === ContractType.FULL_TIME) {
     const totalMonthlyScore = calculateBusinessDays() * 2;
-    return scoredPoints / totalMonthlyScore;
+    return tripsCount / totalMonthlyScore;
   } else {
-    return scoredPoints / 30;
+    return tripsCount / 30;
   }
 };
