@@ -7,7 +7,14 @@ import { QueryKeys } from '../QueryKeys';
 
 export type MeResponse = {
   id: string;
+  username: string;
+  nickname: string;
   email: string;
+  avatar: string;
+  contractType: string;
+  isConfigured: boolean;
+  toWorkDistance: number;
+  trips: Array<unknown>;
 };
 
 const fetchMe = async () => {
