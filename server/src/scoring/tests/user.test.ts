@@ -29,7 +29,7 @@ describe('Get User handler', () => {
     });
     const payload = {
       nickname: 'Krzychu',
-      contractType: 'OTHER',
+      typeOfContract: 'OTHER',
       toWorkDistance: 4,
     };
     const response = await request.put('/api/scoring/users').send(payload).set('accessToken', sampleToken);
