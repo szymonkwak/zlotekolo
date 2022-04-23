@@ -21,13 +21,22 @@ export const Configuration = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
-      const mandatoryInfo = { nickname, contractType, toWorkDistance };
-      await axios.post(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo);
+      let typeOfContract: string;
+      contractType === 'Pełny etat' ? (typeOfContract = 'FULL_TIME') : (typeOfContract = 'OTHER');
+      const mandatoryInfo = { nickname, typeOfContract, toWorkDistance };
+      const response = await axios.put(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo, {
+        headers: {
+          accessToken:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhZWQyYTZhZi1mNmYxLTRmYjktOGM0NS0xZDE3MWU4NmUyMTAiLCJpYXQiOjE2NTA3MTM1ODMsImV4cCI6MTY1MDc1Njc4M30.vFQbCBe9v1o3vSEqJSJsRgRFFMrj7wWVElHCbrXjvgU',
+        },
+      });
+      console.log('r', response);
       navigate(Paths.Home);
     } catch (err) {
-      if (err) setErrorDialogOpen(true);
+      // if (err) setErrorDialogOpen(true);
     }
   };
 

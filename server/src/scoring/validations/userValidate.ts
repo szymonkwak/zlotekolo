@@ -2,7 +2,7 @@
 
 const schema = Joi.object().keys({
   nickname: Joi.string().optional(),
-  contractType: Joi.string().required(),
+  typeOfContract: Joi.string().required(),
   toWorkDistance: Joi.number().required(),
 });
 export const validateUser = (data: unknown) => {
