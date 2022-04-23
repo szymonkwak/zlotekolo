@@ -1,6 +1,7 @@
-import { RequestHandler } from 'express';
 import { Trip, User } from '@prisma/client';
-import { calculateScore, calculateBusinessDays, countTrips } from '~/scoring/calculateScore';
+import { RequestHandler } from 'express';
+
+import { calculateBusinessDays, calculateScore, countTrips } from '~/scoring/calculateScore';
 
 const getTotalDistance = (user: User & { trips: Trip[] }): number => {
   return user.toWorkDistance * user.trips.length;
