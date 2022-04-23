@@ -5,9 +5,6 @@ import { prisma } from '~/common/prisma';
 import { validateUser } from './../validations/userValidate';
 
 export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
-  console.log('body', req.body);
-  console.log('user', req.user);
-
   const { error } = validateUser(req.body);
 
   if (error) return res.status(400).send(error.details[0]?.message);
@@ -25,7 +22,6 @@ export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
         isConfigured: true,
       },
     });
-    console.log('updated user', user);
 
     res.json(user);
   } catch (error) {
