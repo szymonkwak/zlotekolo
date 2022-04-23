@@ -5,6 +5,7 @@ import express from 'express';
 
 import { authRouter } from './auth/router';
 import { scoringRouter } from './scoring/routes';
+import { usersRouter } from './users/routes';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use('/api', express.json());
 app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/scoring', scoringRouter);
 
 app.get('/', (req, res) => {
