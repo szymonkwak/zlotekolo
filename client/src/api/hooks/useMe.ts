@@ -6,6 +6,7 @@ import { QueryKeys } from '../QueryKeys';
 export type MeResponse = {
   id: string;
   email: string;
+  isConfigured: boolean;
 };
 
 const fetchMe = async () => {

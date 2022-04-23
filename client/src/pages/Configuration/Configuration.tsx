@@ -1,6 +1,6 @@
 import { Box, Button, Checkbox, Group, NumberInput, Paper, Select, Space, TextInput } from '@mantine/core';
 import axios from 'axios';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Logo } from '../../components/Logo';
@@ -21,10 +21,13 @@ export const Configuration = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
     try {
-      const mandatoryInfo = { nickname, contractType, toWorkDistance };
-      await axios.post(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo);
+      let typeOfContract: string;
+      contractType === 'Pełny etat' ? (typeOfContract = 'FULL_TIME') : (typeOfContract = 'OTHER');
+      const mandatoryInfo = { nickname, typeOfContract, toWorkDistance };
+      await axios.put(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo);
       navigate(Paths.Home);
     } catch (err) {
       if (err) setErrorDialogOpen(true);
