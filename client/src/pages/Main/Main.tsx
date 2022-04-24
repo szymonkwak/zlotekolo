@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useMe } from '~/api/hooks/useMe';
-import { CenteredLoader } from '~/components/Loader/CenteredLoader';
+import { LoaderWithLogo } from '~/components/Loader/LoaderWithLogo';
 import { Logo } from '~/components/Logo';
 import { ErrorPage } from '~/pages/Error/ErrorPage';
 import { Paths } from '~/routes/paths';
@@ -29,6 +29,7 @@ const Main = () => {
   }, [mobileView]);
 
   if (user.isError) return <ErrorPage />;
+  if (user.isLoading) return <LoaderWithLogo />;
   if (!user.data?.isConfigured) navigate(Paths.Configuration);
   if (user.isSuccess) {
     return (
@@ -37,15 +38,11 @@ const Main = () => {
           <Logo />
         </Center>
 
-        {user.isLoading ? (
-          <CenteredLoader />
-        ) : (
-          <Paper p="xs">
-            <UserData user={user.data} />
-            <Divider size="sm" />
-            {mobileView ? <DisplayMobile user={user.data} /> : <DisplayDesktop user={user.data} />}
-          </Paper>
-        )}
+        <Paper p="xs">
+          <UserData user={user.data} />
+          <Divider size="sm" />
+          {mobileView ? <DisplayMobile user={user.data} /> : <DisplayDesktop user={user.data} />}
+        </Paper>
       </>
     );
   }
