@@ -18,7 +18,7 @@ export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
       data: {
         nickname: nick,
         contractType: typeOfContract,
-        toWorkDistance: parseInt(toWorkDistance),
+        toWorkDistance: parseInt(toWorkDistance) * 1000,
         avatar: req.user?.avatar,
         isConfigured: true,
       },
