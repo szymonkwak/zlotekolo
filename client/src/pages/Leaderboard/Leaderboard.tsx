@@ -1,5 +1,6 @@
 import { Avatar, Box, Button, Group, Paper, ScrollArea, Table, Text } from '@mantine/core';
-import { ReactElement, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowNarrowLeft } from 'tabler-icons-react';
 
@@ -8,35 +9,30 @@ import { Paths } from '~/routes/paths';
 
 import { boxStyles } from '../Configuration/Configuration.styles';
 import { Header } from '../Configuration/Header';
-import { BronzeWheel, GoldWheel, SilverWheel } from './Icons';
+import { GoldWheel } from './Icons';
 
 export const Leaderboard = () => {
-  const [icon, setIcon] = useState<ReactElement>();
+  const [users, setUsers] = useState<any[]>([]);
   const navigate = useNavigate();
-  const users = [
-    { name: 'Anka', points: 32 },
-    { name: 'Grzesiek', points: 70 },
-    { name: 'Ktoś', points: 80 },
-    { name: 'Blabla', points: 15 },
-    { name: 'Anka223', points: 46 },
-    { name: 'Anka224', points: 46 },
-    { name: 'Anka227', points: 46 },
-  ];
+
+  useEffect(() => {
+    document.body.style.margin = '0';
+  }, []);
+
+  const getUsersFromDataBase = async () => {
+    const response = await axios.get(`${process.env.VITE_SERVER_URL}/api/users`);
+    setUsers(response?.data);
+  };
+
+  useEffect(() => {
+    getUsersFromDataBase();
+  }, []);
 
   const handleClick = () => {
     navigate(Paths.Home);
   };
 
-  useEffect(() => {
-    users.map((user) => {
-      if (user.points <= 50) {
-        setIcon(<SilverWheel />);
-      } else if (user.points > 50) {
-        setIcon(<GoldWheel />);
-      }
-      setIcon(<BronzeWheel />);
-    });
-  }, []);
+  const sortedUsers = users.sort((a, b) => b.score - a.score);
 
   return (
     <>
@@ -59,36 +55,44 @@ export const Leaderboard = () => {
             <Header title="Ranking" />
           </Box>
           <Box style={{ height: 500, paddingBottom: '3rem' }}>
-            <ScrollArea style={{ height: 500 }}>
+            <ScrollArea style={{ height: 500, padding: '0px 25px' }}>
               <Table sx={{ minWidth: 800 }} verticalSpacing="md">
                 <thead>
                   <tr>
+                    <th>Miejsce</th>
                     <th>Pseudonim</th>
                     <th>Frekwencja</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user, idx) => (
+                  {sortedUsers.map((user, idx) => (
                     <tr key={idx}>
                       <td>
+                        <Group>
+                          <Text size="sm" sx={{ paddingLeft: 20 }}>
+                            {idx + 1}
+                          </Text>
+                        </Group>
+                      </td>
+                      <td>
                         <Group spacing="sm">
-                          <Avatar size={40} radius={40} />
+                          <Avatar size={40} src={user.avatar} radius={40} />
                           <div>
                             <Text size="sm" weight={500}>
-                              {user.name}
+                              {user?.nickname}
                             </Text>
                           </div>
                         </Group>
                       </td>
                       <td>
                         <Group>
-                          <Text size="sm">{user.points}%</Text>
+                          <Text size="sm">{user?.score}%</Text>
                         </Group>
                       </td>
                       <td>
                         <Group spacing={0} position="right">
-                          {icon}
+                          <GoldWheel />
                         </Group>
                       </td>
                     </tr>
