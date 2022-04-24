@@ -5,6 +5,9 @@ import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { Calendar } from 'tabler-icons-react';
 
+import { queryClient } from '~/api/QueryClientProvider';
+import { QueryKeys } from '~/api/QueryKeys';
+
 import { postTrip, TripType } from '../requests/postTrip';
 
 const AddRide = () => {
@@ -15,7 +18,10 @@ const AddRide = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    addTrip.mutate({ tripDate, tripType });
+    addTrip.mutate(
+      { tripDate, tripType }
+      // { onSuccess: () => queryClient.invalidateQueries(QueryKeys.Me) }
+    );
   };
 
   const handleSelectTrip = (value: TripType) => {

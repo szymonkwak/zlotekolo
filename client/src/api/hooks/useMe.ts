@@ -30,4 +30,4 @@ const fetchMe = async () => {
   return data;
 };
 
-export const useMe = () => useQuery(QueryKeys.Me, fetchMe);
+export const useMe = () => useQuery(QueryKeys.Me, fetchMe, { retry: 0 });

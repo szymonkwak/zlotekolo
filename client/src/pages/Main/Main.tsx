@@ -14,7 +14,7 @@ import { isMoblieView } from './subcomponents/Display/isMobileView';
 import UserData from './subcomponents/UserData';
 
 const Main = () => {
-  const user = useMe();
+  const { data: user, isFetching, isError } = useMe();
   const navigate = useNavigate();
   const [mobileView, setMobileView] = useState(false);
 
@@ -26,30 +26,22 @@ const Main = () => {
     };
   }, [mobileView]);
 
-  if (user.isError) return <ErrorPage />;
-  if (user.isLoading) return <LoaderWithLogo />;
-  if (!user.data?.isConfigured) navigate(Paths.Configuration);
-  if (user.isSuccess) {
-    return (
-      <>
-        <Center m="md">
-          <Logo />
-        </Center>
+  if (!user || isError) return <ErrorPage />;
+  if (isFetching) return <LoaderWithLogo />;
+  if (!user?.isConfigured) navigate(Paths.Configuration);
 
-        <Paper p="xs">
-          <UserData user={user.data} />
-          <Divider size="sm" />
-          {mobileView ? <DisplayMobile user={user.data} /> : <DisplayDesktop user={user.data} />}
-        </Paper>
-      </>
-    );
-  }
-
-  //Default render
   return (
-    <Center m="md">
-      <Logo />
-    </Center>
+    <>
+      <Center m="md">
+        <Logo />
+      </Center>
+
+      <Paper p="xs">
+        <UserData user={user} />
+        <Divider size="sm" />
+        {mobileView ? <DisplayMobile user={user} /> : <DisplayDesktop user={user} />}
+      </Paper>
+    </>
   );
 };
 

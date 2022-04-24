@@ -3,6 +3,8 @@ import axios from 'axios';
 import { SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getCookie } from '~/utils/getCookie';
+
 import { Logo } from '../../components/Logo';
 import { Paths } from '../../routes/paths';
 import ErrorMessage from '../Configuration/ErrorMessage';
@@ -27,7 +29,11 @@ export const Configuration = () => {
       let typeOfContract: string;
       contractType === 'Pełny etat' ? (typeOfContract = 'FULL_TIME') : (typeOfContract = 'OTHER');
       const mandatoryInfo = { nickname, typeOfContract, toWorkDistance };
-      await axios.put(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo);
+      await axios.put(`${process.env.VITE_SERVER_URL}/api/scoring/users`, mandatoryInfo, {
+        headers: {
+          accessToken: getCookie('accessToken'),
+        },
+      });
       navigate(Paths.Home);
     } catch (err) {
       if (err) setErrorDialogOpen(true);
