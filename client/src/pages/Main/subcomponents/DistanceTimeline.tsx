@@ -1,22 +1,25 @@
 import { Box, Timeline, Title } from '@mantine/core';
 
-const DistanceTimeline = () => {
+import { MeResponse } from '~/api/hooks/useMe';
+
+import { noOfSelectedBullets, timelineBulletValues } from './distanceTimelineCalculations';
+
+type UserProps = { user: MeResponse };
+
+const NO_OF_BULLETS = 6;
+
+const DistanceTimeline = ({ user }: UserProps) => {
   return (
     <Box py="sm" m="sm">
       <Title order={3} sx={{ marginBottom: 10 }}>
         Wykręcony dystans:
       </Title>
-      <Timeline active={1} bulletSize={24}>
-        <Timeline.Item title="25km">
-          <Box style={{ height: 40 }} />
-        </Timeline.Item>
-        <Timeline.Item title="50km">
-          <Box style={{ height: 40 }} />
-        </Timeline.Item>
-        <Timeline.Item title="75km">
-          <Box style={{ height: 40 }} />
-        </Timeline.Item>
-        <Timeline.Item title="100km"></Timeline.Item>
+      <Timeline active={noOfSelectedBullets(user, NO_OF_BULLETS)} bulletSize={24}>
+        {timelineBulletValues(user, NO_OF_BULLETS).map((value) => (
+          <Timeline.Item key={value} title={value}>
+            <Box style={{ height: 40 }} />
+          </Timeline.Item>
+        ))}
       </Timeline>
     </Box>
   );

@@ -18,8 +18,6 @@ const Main = () => {
   const navigate = useNavigate();
   const [mobileView, setMobileView] = useState(false);
 
-  console.log(user);
-
   useEffect(() => {
     setMobileView(isMoblieView());
     window.addEventListener('resize', () => setMobileView(isMoblieView()));

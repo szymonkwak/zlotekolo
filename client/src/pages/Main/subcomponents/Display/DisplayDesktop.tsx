@@ -17,7 +17,7 @@ const DisplayDesktop = ({ user }: UserProps) => {
         <UserSummary user={user} />
       </Grid.Col>
       <Grid.Col span={2}>
-        <DistanceTimeline />
+        <DistanceTimeline user={user} />
       </Grid.Col>
       <Grid.Col span={5}>
         <Standings />
