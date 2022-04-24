@@ -46,6 +46,13 @@ const Main = () => {
       </>
     );
   }
+
+  //Default render
+  return (
+    <Center m="md">
+      <Logo />
+    </Center>
+  );
 };
 
 export { Main };
