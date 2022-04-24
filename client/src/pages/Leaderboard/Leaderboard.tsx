@@ -92,7 +92,7 @@ export const Leaderboard = () => {
                       </td>
                       <td>
                         <Group>
-                          <Text size="sm">{user?.score}%</Text>
+                          <Text size="sm">{(user?.score * 100).toFixed(2)}%</Text>
                         </Group>
                       </td>
                       <td>

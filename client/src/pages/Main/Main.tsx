@@ -1,4 +1,4 @@
-import { Center, Divider, Paper } from '@mantine/core';
+import { Box, Button, Center, Divider, Paper } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,10 @@ const Main = () => {
   const { data: user, isFetching, isError } = useMe();
   const navigate = useNavigate();
   const [mobileView, setMobileView] = useState(false);
+
+  const handleClick = () => {
+    navigate(Paths.Leadearboard);
+  };
 
   useEffect(() => {
     setMobileView(isMoblieView());
@@ -40,6 +44,11 @@ const Main = () => {
         <UserData user={user} />
         <Divider size="sm" />
         {mobileView ? <DisplayMobile user={user} /> : <DisplayDesktop user={user} />}
+        <Box style={{ display: 'flex', justifyContent: 'flex-end', padding: '15px' }}>
+          <Button onClick={handleClick} size="lg">
+            WYŚWIETL RANKING
+          </Button>
+        </Box>
       </Paper>
     </>
   );
