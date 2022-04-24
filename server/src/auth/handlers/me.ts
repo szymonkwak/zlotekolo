@@ -6,15 +6,15 @@ import { calculateBusinessDays, calculateScore, countTrips } from '~/scoring/cal
 
 const getTotalDistance = (user: User & { trips: Trip[] }): number => {
   return user.toWorkDistance * user.trips.length;
-}
+};
 
 export const getMe: RequestHandler = async (req, res) => {
   const trips = await prisma.trip.findMany({
     where: {
-      userId: req.user?.id
-    }
+      userId: req.user?.id,
+    },
   });
-  const user: User & { trips: Trip[] } = { ...req.user as User, trips };
+  const user: User & { trips: Trip[] } = { ...(req.user as User), trips };
 
   const score = calculateScore(user);
 
