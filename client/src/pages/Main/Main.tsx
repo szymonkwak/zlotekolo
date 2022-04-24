@@ -30,24 +30,25 @@ const Main = () => {
 
   if (user.isError) return <ErrorPage />;
   if (!user.data?.isConfigured) navigate(Paths.Configuration);
+  if (user.isSuccess) {
+    return (
+      <>
+        <Center m="md">
+          <Logo />
+        </Center>
 
-  return (
-    <>
-      <Center m="md">
-        <Logo />
-      </Center>
-
-      {user.isLoading ? (
-        <CenteredLoader />
-      ) : (
-        <Paper p="xs">
-          <UserData user={user.data} />
-          <Divider size="sm" />
-          {mobileView ? <DisplayMobile /> : <DisplayDesktop />}
-        </Paper>
-      )}
-    </>
-  );
+        {user.isLoading ? (
+          <CenteredLoader />
+        ) : (
+          <Paper p="xs">
+            <UserData user={user.data} />
+            <Divider size="sm" />
+            {mobileView ? <DisplayMobile user={user.data} /> : <DisplayDesktop user={user.data} />}
+          </Paper>
+        )}
+      </>
+    );
+  }
 };
 
 export { Main };

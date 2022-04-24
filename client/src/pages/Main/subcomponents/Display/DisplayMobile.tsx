@@ -1,12 +1,16 @@
+import { MeResponse } from '~/api/hooks/useMe';
+
 import AddRide from '../AddRide';
 import Standings from '../Standings';
 import UserSummary from '../UserSummary';
 
-const DisplayMobile = () => {
+type UserProps = { user: MeResponse };
+
+const DisplayMobile = ({ user }: UserProps) => {
   return (
     <>
       <AddRide />
-      <UserSummary />
+      <UserSummary user={user} />
       <Standings />
     </>
   );

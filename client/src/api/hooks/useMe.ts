@@ -15,6 +15,10 @@ export type MeResponse = {
   isConfigured: boolean;
   toWorkDistance: number;
   trips: Array<unknown>;
+  maxTrips: number;
+  score: number;
+  totalDistance: number;
+  totalMonthDistance: number;
 };
 
 const fetchMe = async () => {
