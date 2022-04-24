@@ -6,6 +6,7 @@ import { ArrowNarrowLeft } from 'tabler-icons-react';
 
 import { Logo } from '~/components/Logo';
 import { Paths } from '~/routes/paths';
+import { getCookie } from '~/utils/getCookie';
 
 import { boxStyles } from '../Configuration/Configuration.styles';
 import { Header } from '../Configuration/Header';
@@ -20,7 +21,11 @@ export const Leaderboard = () => {
   }, []);
 
   const getUsersFromDataBase = async () => {
-    const response = await axios.get(`${process.env.VITE_SERVER_URL}/api/users`);
+    const response = await axios.get(`${process.env.VITE_SERVER_URL}/api/scoring/users`, {
+      headers: {
+        accessToken: getCookie('accessToken'),
+      },
+    });
     setUsers(response?.data);
   };
 
