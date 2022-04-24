@@ -3,6 +3,7 @@ import { DatePicker } from '@mantine/dates';
 import * as dayjs from 'dayjs';
 import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
+import { Calendar } from 'tabler-icons-react';
 
 import { postTrip, TripType } from '../requests/postTrip';
 
@@ -10,7 +11,7 @@ const AddRide = () => {
   const theme = useMantineTheme();
   const addTrip = useMutation(postTrip);
   const [tripType, setTripType] = useState<TripType>('TO_WORK');
-  const [tripDate, setTripDate] = useState<Date>(new Date());
+  const [tripDate, setTripDate] = useState<Date>(new Date(Date.now()));
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -36,17 +37,16 @@ const AddRide = () => {
 
         <Grid.Col span={8}>
           <DatePicker
-            //TODO ikonka
             value={tripDate}
             onChange={handleSelectDate}
             required
             locale={dayjs.locale('pl')}
             allowLevelChange={false}
+            icon={<Calendar size={16} />}
             placeholder="Wybierz"
-            // label="Data"
-            minDate={dayjs(new Date()).startOf('month').add(1, 'days').toDate()}
-            maxDate={dayjs(new Date()).endOf('month').subtract(5, 'days').toDate()}
-            // excludeDate={(date) => date.getDay() === 0 || date.getDay() === 6}
+            minDate={dayjs(Date.now()).subtract(1, 'days').toDate()}
+            maxDate={dayjs(Date.now()).toDate()}
+            excludeDate={(date) => date.getDay() === 0 || date.getDay() === 6}
           />
         </Grid.Col>
 
