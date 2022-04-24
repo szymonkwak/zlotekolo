@@ -3,4 +3,5 @@ export enum Paths {
   Login = '/sign-in',
   Leadearboard = '/leaderboard',
   Configuration = '/configuration',
+  Main = "Main"
 }

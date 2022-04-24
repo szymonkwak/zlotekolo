@@ -1,6 +1,6 @@
 import { Box, Button, Checkbox, Group, NumberInput, Paper, Select, Space, TextInput } from '@mantine/core';
 import axios from 'axios';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getCookie } from '~/utils/getCookie';
@@ -22,6 +22,10 @@ export const Configuration = () => {
   const [errorDialogOpen, setErrorDialogOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.style.margin = '0';
+  }, []);
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
