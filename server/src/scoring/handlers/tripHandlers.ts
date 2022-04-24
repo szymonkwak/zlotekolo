@@ -8,12 +8,16 @@ export const addTrip: RequestHandler = async (req, res) => {
   const tripDay = new Date(date);
   const today = getShortDate(new Date().toISOString());
   const dayOfTrip = getShortDate(tripDay.toISOString());
+  const isWeekend = (day: Date) => day.getDay() === 6 || day.getDay() === 0;
 
   const alreadyExistTrip = await prisma.user.findUnique({
     where: { email: req.user?.email },
     select: { trips: { where: { dayOfTrip: tripDay, type: tripType } } },
   });
 
+  if (isWeekend(tripDay)) {
+    return res.status(400).send('w weekend nie pracujemy:)');
+  }
   if (alreadyExistTrip !== null && alreadyExistTrip.trips?.length > 0) {
     return res.status(400).send('trasa została dodana wcześniej');
   }
