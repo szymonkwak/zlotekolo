@@ -11,8 +11,7 @@
 
 # production
 /build
-/client/dist/*
-!client/dist/_redirects
+/client/dist/
 
 # misc
 .DS_Store

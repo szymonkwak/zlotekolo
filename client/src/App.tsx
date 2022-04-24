@@ -5,7 +5,7 @@ import { Router } from './routes/router';
 
 export const App = () => {
   return (
-    <MantineProvider theme={defaultTheme}>
+    <MantineProvider withNormalizeCSS theme={defaultTheme}>
       <Router />
     </MantineProvider>
   );
