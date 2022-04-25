@@ -36,8 +36,8 @@ export const getAllUsers: RequestHandler = async (req, res) => {
     const trips = await prisma.trip.findMany();
     res.json(users.map((user) => {
       const userTrips = trips.filter((trip) => trip.userId === user.id)
-      const score = calculateScore({...user, trips: userTrips});
-      return {...user, score}
+      const score = calculateScore({ ...user, trips: userTrips });
+      return { ...user, score }
     }));
   } catch (error) {
     console.log('error', error);
