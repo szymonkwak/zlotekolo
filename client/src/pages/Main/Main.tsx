@@ -19,10 +19,6 @@ const Main = () => {
   const navigate = useNavigate();
   const [mobileView, setMobileView] = useState(false);
 
-  const handleClick = () => {
-    navigate(Paths.Leadearboard);
-  };
-
   useEffect(() => {
     setMobileView(isMoblieView());
     window.addEventListener('resize', () => setMobileView(isMoblieView()));
@@ -48,11 +44,6 @@ const Main = () => {
         </Box>
         <Divider size="sm" />
         {mobileView ? <DisplayMobile user={user} /> : <DisplayDesktop user={user} />}
-        <Box style={{ display: 'flex', justifyContent: 'flex-end', padding: '15px' }}>
-          <Button onClick={handleClick} size="lg">
-            WYŚWIETL RANKING
-          </Button>
-        </Box>
       </Paper>
     </>
   );

@@ -24,6 +24,6 @@ export const getMe: RequestHandler = async (req, res) => {
     trips: countTrips(user.trips),
     maxTrips: calculateBusinessDays() * 2,
     totalDistance: getTotalDistance(user),
-    totalMonthDistance: score * user.toWorkDistance,
+    totalMonthDistance: countTrips(user.trips) * user.toWorkDistance,
   });
 };

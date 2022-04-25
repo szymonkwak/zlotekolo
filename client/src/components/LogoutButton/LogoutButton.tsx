@@ -10,5 +10,9 @@ export const LogoutButton = () => {
     navigate(Paths.Login);
   };
 
-  return <Button onClick={logout}>Wyloguj</Button>;
+  return (
+    <Button m={10} onClick={logout}>
+      Wyloguj
+    </Button>
+  );
 };
