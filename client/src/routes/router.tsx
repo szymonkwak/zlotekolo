@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { RequireAuth } from '~/components/RequireAuth/RequireAuth';
+import { AuthRedirect } from '~/pages/AuthRedirect/AuthRedirect';
 import { Configuration } from '~/pages/Configuration/Configuration';
 import { ErrorPage } from '~/pages/Error/ErrorPage';
 import { Home } from '~/pages/Home';
@@ -14,6 +15,7 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path={Paths.AuthRedirect} element={<AuthRedirect />} />
         <Route path={Paths.Login} element={<LogIn />} />
 
         <Route element={<RequireAuth />}>

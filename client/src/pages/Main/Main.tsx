@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMe } from '~/api/hooks/useMe';
 import { LoaderWithLogo } from '~/components/Loader/LoaderWithLogo';
 import { Logo } from '~/components/Logo';
+import { LogoutButton } from '~/components/LogoutButton/LogoutButton';
 import { ErrorPage } from '~/pages/Error/ErrorPage';
 import { Paths } from '~/routes/paths';
 
@@ -14,7 +15,7 @@ import { isMoblieView } from './subcomponents/Display/isMobileView';
 import UserData from './subcomponents/UserData';
 
 const Main = () => {
-  const { data: user, isFetching, isError } = useMe();
+  const { data: user, isLoading, isError } = useMe();
   const navigate = useNavigate();
   const [mobileView, setMobileView] = useState(false);
 
@@ -31,7 +32,7 @@ const Main = () => {
   }, [mobileView]);
 
   if (!user || isError) return <ErrorPage />;
-  if (isFetching) return <LoaderWithLogo />;
+  if (isLoading) return <LoaderWithLogo />;
   if (!user?.isConfigured) navigate(Paths.Configuration);
 
   return (
@@ -41,7 +42,10 @@ const Main = () => {
       </Center>
 
       <Paper p="xs">
-        <UserData user={user} />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <UserData user={user} />
+          <LogoutButton />
+        </Box>
         <Divider size="sm" />
         {mobileView ? <DisplayMobile user={user} /> : <DisplayDesktop user={user} />}
         <Box style={{ display: 'flex', justifyContent: 'flex-end', padding: '15px' }}>

@@ -1,12 +1,11 @@
 import { Avatar, Box, Button, Group, Paper, ScrollArea, Table, Text } from '@mantine/core';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowNarrowLeft } from 'tabler-icons-react';
 
+import { axiosClient } from '~/api/axiosClient';
 import { Logo } from '~/components/Logo';
 import { Paths } from '~/routes/paths';
-import { getCookie } from '~/utils/getCookie';
 
 import { boxStyles } from '../Configuration/Configuration.styles';
 import { Header } from '../Configuration/Header';
@@ -21,11 +20,7 @@ export const Leaderboard = () => {
   }, []);
 
   const getUsersFromDataBase = async () => {
-    const response = await axios.get(`${process.env.VITE_SERVER_URL}/api/scoring/users`, {
-      headers: {
-        accessToken: getCookie('accessToken'),
-      },
-    });
+    const response = await axiosClient.get(`${process.env.VITE_SERVER_URL}/api/scoring/users`);
     setUsers(response?.data);
   };
 

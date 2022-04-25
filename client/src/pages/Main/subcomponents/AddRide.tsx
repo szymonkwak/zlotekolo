@@ -18,10 +18,7 @@ const AddRide = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    addTrip.mutate(
-      { tripDate, tripType }
-      // { onSuccess: () => queryClient.invalidateQueries(QueryKeys.Me) }
-    );
+    addTrip.mutate({ tripDate, tripType }, { onSuccess: () => queryClient.invalidateQueries(QueryKeys.Me) });
   };
 
   const handleSelectTrip = (value: TripType) => {

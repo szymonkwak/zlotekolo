@@ -1,7 +1,9 @@
 export enum Paths {
   Home = '/',
   Login = '/sign-in',
+  AuthRedirect = '/auth/redirect',
   Leadearboard = '/leaderboard',
   Configuration = '/configuration',
-  Main = "Main"
+  ErrorPage = '/error',
+  Main = 'Main',
 }
