@@ -2,13 +2,14 @@
 
 import { prisma } from '~/common/prisma';
 
+const isWeekend = (day: Date) => day.getDay() === 6 || day.getDay() === 0;
+
 export const addTrip: RequestHandler = async (req, res) => {
   const { date, tripType } = req.body;
 
   const tripDay = new Date(date);
   const today = getShortDate(new Date().toISOString());
   const dayOfTrip = getShortDate(tripDay.toISOString());
-  const isWeekend = (day: Date) => day.getDay() === 6 || day.getDay() === 0;
 
   const alreadyExistTrip = await prisma.user.findUnique({
     where: { email: req.user?.email },

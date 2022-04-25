@@ -5,14 +5,14 @@ import { GoogleButton } from '~/components/GoogleButton';
 import { Logo } from '~/components/Logo';
 
 export const LogIn = () => {
-
-
   return (
     <Modal
       centered
       withCloseButton={false}
       opened
-      onClose={() => { /* do not close it */ }}
+      onClose={() => {
+        /* do not close it */
+      }}
     >
       {
         <Stack justify="space-around" spacing="xl" style={{ marginTop: 50, marginBottom: 50 }}>
@@ -20,24 +20,21 @@ export const LogIn = () => {
             <Logo />
           </Container>
 
-          <Text weight={700} align="center">Zaloguj się na swoje konto</Text>
+          <Text weight={700} align="center">
+            Zaloguj się na swoje konto
+          </Text>
 
-          <TextInput
-            placeholder="Email"
-            label="Email"
-          />
-          <PasswordInput
-            placeholder="Hasło"
-            label="Password"
-          />
+          <TextInput placeholder="Email" label="Email" />
+          <PasswordInput placeholder="Hasło" label="Password" />
           <Group direction="column" position="center" spacing="sm" sx={{ padding: 15 }}>
-            <Button type="submit">
-              Zaloguj się
-            </Button>
-            <Text weight={500} align="center">lub</Text>
+            <Button type="submit">Zaloguj się</Button>
+            <Text weight={500} align="center">
+              lub
+            </Text>
             <GoogleButton />
           </Group>
-        </Stack>}
+        </Stack>
+      }
     </Modal>
-  )
+  );
 };

@@ -8,7 +8,7 @@ axiosClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    showNotification({ message: error.response.data, color: 'red' });
+    if (typeof error.response.data === 'string') showNotification({ message: error.response.data, color: 'red' });
     return Promise.reject(error);
   }
 );
