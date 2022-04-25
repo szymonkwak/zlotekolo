@@ -4,7 +4,6 @@ import { RequireAuth } from '~/components/RequireAuth/RequireAuth';
 import { AuthRedirect } from '~/pages/AuthRedirect/AuthRedirect';
 import { Configuration } from '~/pages/Configuration/Configuration';
 import { ErrorPage } from '~/pages/Error/ErrorPage';
-import { Home } from '~/pages/Home';
 import { Leaderboard } from '~/pages/Leaderboard';
 import { LogIn } from '~/pages/LogIn';
 import { Main } from '~/pages/Main/Main';

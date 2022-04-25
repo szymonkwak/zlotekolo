@@ -11,7 +11,7 @@ export const LogoutButton = () => {
   };
 
   return (
-    <Button m={10} onClick={logout}>
+    <Button variant="outline" m={10} onClick={logout}>
       Wyloguj
     </Button>
   );
