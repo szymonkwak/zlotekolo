@@ -47,8 +47,8 @@ const AddRide = () => {
             allowLevelChange={false}
             icon={<Calendar size={16} />}
             placeholder="Wybierz"
-            minDate={dayjs(Date.now()).startOf('month').toDate()}
-            maxDate={dayjs(Date.now()).toDate()}
+            // minDate={dayjs(Date.now()).startOf('month').toDate()}
+            // maxDate={dayjs(Date.now()).toDate()}
             // excludeDate={(date) => date.getDay() === 0 || date.getDay() === 6}
           />
         </Grid.Col>
