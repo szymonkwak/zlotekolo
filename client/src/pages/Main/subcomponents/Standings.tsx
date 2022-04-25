@@ -1,9 +1,8 @@
 import { Paper, Table, Title, useMantineTheme } from '@mantine/core';
-import axios from 'axios';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { axiosClient } from '~/api/axiosClient';
 import { MeResponse } from '~/api/hooks/useMe';
-import { getCookie } from '~/utils/getCookie';
 
 type UserProps = { user: MeResponse };
 
@@ -11,11 +10,7 @@ const Standings = ({ user }: UserProps) => {
   const [users, setUsers] = useState<any[]>([]);
 
   const getUsersFromDataBase = async () => {
-    const response = await axios.get(`${process.env.VITE_SERVER_URL}/api/scoring/users`, {
-      headers: {
-        accessToken: getCookie('accessToken'),
-      },
-    });
+    const response = await axiosClient.get(`${process.env.VITE_SERVER_URL}/api/scoring/users`);
     setUsers(response?.data);
   };
 
@@ -23,14 +18,10 @@ const Standings = ({ user }: UserProps) => {
     getUsersFromDataBase();
   }, []);
 
-  const sortedUsers = users
-    .sort((a, b) => b.score - a.score)
-    .map((user, i) => ({ ...user, position: i + 1 }));
+  const sortedUsers = users.sort((a, b) => b.score - a.score).map((user, i) => ({ ...user, position: i + 1 }));
 
-  const myPosition = sortedUsers.findIndex(u => user.id === u.id);
-  const limitedUsers = myPosition < 3
-    ? sortedUsers.slice(0, 5)
-    : sortedUsers.slice(myPosition - 2, myPosition + 2);
+  const myPosition = sortedUsers.findIndex((u) => user.id === u.id);
+  const limitedUsers = myPosition < 3 ? sortedUsers.slice(0, 5) : sortedUsers.slice(myPosition - 2, myPosition + 2);
 
   const rows = limitedUsers.map((user) => (
     <tr key={user.nickname}>
