@@ -1,8 +1,9 @@
 import { Paper, Table, Title, useMantineTheme } from '@mantine/core';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getCookie } from '~/utils/getCookie';
+import { useEffect,useState } from 'react';
+
 import { MeResponse } from '~/api/hooks/useMe';
+import { getCookie } from '~/utils/getCookie';
 
 type UserProps = { user: MeResponse };
 
