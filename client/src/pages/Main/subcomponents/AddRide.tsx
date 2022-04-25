@@ -32,7 +32,7 @@ const AddRide = () => {
   };
 
   return (
-    <Paper component="form" onSubmit={handleSubmit} withBorder p="md" m="sm" sx={{ backgroundColor: theme.colors.gold[1] }}>
+    <Paper component="form" onSubmit={handleSubmit} withBorder={false} p="md" m="sm" sx={{ backgroundColor: theme.colors.gold[1] }}>
       <Title order={3} sx={{ marginBottom: 10 }}>
         Dodaj przejazd:
       </Title>
@@ -50,9 +50,9 @@ const AddRide = () => {
             allowLevelChange={false}
             icon={<Calendar size={16} />}
             placeholder="Wybierz"
-            // minDate={dayjs(Date.now()).subtract(1, 'days').toDate()}
-            // maxDate={dayjs(Date.now()).toDate()}
-            // excludeDate={(date) => date.getDay() === 0 || date.getDay() === 6}
+          // minDate={dayjs(Date.now()).subtract(1, 'days').toDate()}
+          // maxDate={dayjs(Date.now()).toDate()}
+          // excludeDate={(date) => date.getDay() === 0 || date.getDay() === 6}
           />
         </Grid.Col>
 
