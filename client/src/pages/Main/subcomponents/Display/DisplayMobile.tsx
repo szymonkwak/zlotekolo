@@ -11,7 +11,7 @@ const DisplayMobile = ({ user }: UserProps) => {
     <>
       <AddRide />
       <UserSummary user={user} />
-      <Standings />
+      <Standings user={user} />
     </>
   );
 };

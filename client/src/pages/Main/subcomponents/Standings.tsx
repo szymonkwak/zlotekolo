@@ -1,39 +1,57 @@
 import { Paper, Table, Title, useMantineTheme } from '@mantine/core';
+import axios from 'axios';
+import { useEffect,useState } from 'react';
 
-const elements = [
-  { position: 1, points: '12%', nickname: 'Borowka' },
-  { position: 2, points: '14%', nickname: 'Tysia' },
-  { position: 3, points: '88%', nickname: 'Mimigo' },
-  { position: 4, points: '13%', nickname: 'Kaffan' },
-  { position: 5, points: '14%', nickname: 'Eriko' },
-  { position: 6, points: '54%', nickname: 'Benio' },
-  { position: 7, points: '81%', nickname: 'Kalarepka' },
-  { position: 8, points: '36%', nickname: 'Farfocel' },
-  { position: 9, points: '46%', nickname: 'Zdzich' },
-  { position: 10, points: '75%', nickname: 'Jarzyna' },
-];
+import { MeResponse } from '~/api/hooks/useMe';
+import { getCookie } from '~/utils/getCookie';
 
-const rows = elements.map((element) => (
-  <tr key={element.nickname}>
-    <td>{element.nickname}</td>
-    <td>{element.position}</td>
-    <td>{element.points}</td>
-  </tr>
-));
+type UserProps = { user: MeResponse };
 
-const Standings = () => {
+const Standings = ({ user }: UserProps) => {
+  const [users, setUsers] = useState<any[]>([]);
+
+  const getUsersFromDataBase = async () => {
+    const response = await axios.get(`${process.env.VITE_SERVER_URL}/api/scoring/users`, {
+      headers: {
+        accessToken: getCookie('accessToken'),
+      },
+    });
+    setUsers(response?.data);
+  };
+
+  useEffect(() => {
+    getUsersFromDataBase();
+  }, []);
+
+  const sortedUsers = users
+    .sort((a, b) => b.score - a.score)
+    .map((user, i) => ({ ...user, position: i + 1 }));
+
+  const myPosition = sortedUsers.findIndex(u => user.id === u.id);
+  const limitedUsers = myPosition < 3
+    ? sortedUsers.slice(0, 5)
+    : sortedUsers.slice(myPosition - 2, myPosition + 2);
+
+  const rows = limitedUsers.map((user) => (
+    <tr key={user.nickname}>
+      <td>{user.position}</td>
+      <td>{user.nickname}</td>
+      <td>{(user.score * 100).toFixed(2)}%</td>
+    </tr>
+  ));
+
   const theme = useMantineTheme();
   return (
     <Paper withBorder p="sm" m="sm">
       <Title order={3} sx={{ marginBottom: 10 }}>
         Ranking:
       </Title>
-      <Paper radius="xs" withBorder sx={{ backgroundColor: theme.colors.gray[0] }}>
+      <Paper radius="xs" withBorder={false} sx={{ backgroundColor: theme.colors.gray[0] }}>
         <Table highlightOnHover verticalSpacing="xs" fontSize="md">
           <thead>
             <tr>
-              <th>Pseudonim</th>
               <th>Miejsce</th>
+              <th>Pseudonim</th>
               <th>Frekwencja</th>
             </tr>
           </thead>
