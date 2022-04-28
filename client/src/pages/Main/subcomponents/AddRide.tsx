@@ -1,6 +1,7 @@
+import 'dayjs/locale/pl';
+
 import { Button, Chip, Chips, Grid, Paper, Title, useMantineTheme } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
-import * as dayjs from 'dayjs';
 import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { Calendar } from 'tabler-icons-react';
@@ -43,13 +44,10 @@ const AddRide = () => {
             value={tripDate}
             onChange={handleSelectDate}
             required
-            locale={dayjs.locale('pl')}
+            locale="pl"
             allowLevelChange={false}
             icon={<Calendar size={16} />}
             placeholder="Wybierz"
-            // minDate={dayjs(Date.now()).startOf('month').toDate()}
-            // maxDate={dayjs(Date.now()).toDate()}
-            // excludeDate={(date) => date.getDay() === 0 || date.getDay() === 6}
           />
         </Grid.Col>
 

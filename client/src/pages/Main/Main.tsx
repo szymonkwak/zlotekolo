@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, Paper } from '@mantine/core';
+import { Box, Center, Divider, Paper } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
