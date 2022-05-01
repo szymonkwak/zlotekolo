@@ -3,7 +3,6 @@ import 'dayjs/locale/pl';
 import { Button, Chip, Chips, Grid, Paper, Title, useMantineTheme } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { showNotification } from '@mantine/notifications';
-import dayjs from 'dayjs';
 import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { Calendar } from 'tabler-icons-react';
