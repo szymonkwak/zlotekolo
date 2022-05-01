@@ -1,48 +1,50 @@
-﻿import { RequestHandler } from 'express';
+﻿import { Destination, Trip } from '@prisma/client';
+import dayjs from 'dayjs';
+import dayjsBusinessTime from 'dayjs-business-time';
+import { RequestHandler } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 import { prisma } from '~/common/prisma';
 
-const isWeekend = (day: Date) => day.getDay() === 6 || day.getDay() === 0;
+dayjs.extend(dayjsBusinessTime);
+
+const isWeekend = (date: Date) => date.getDay() === 6 || date.getDay() === 0;
+
+const isAtTheSameDay = (date: Date, dateToMatch: Date) => dayjs(date).isSame(dateToMatch, 'day');
+const isOfTheSameType = (type: Destination, typeToMatch: Destination) => type === typeToMatch;
+const isTheSameTrip = (date: Date, type: Destination) => (trip: Trip) =>
+  isAtTheSameDay(date, trip.dayOfTrip) && isOfTheSameType(type, trip.type);
+
+const maxBusinessDaysToAddTrip: Record<Destination, number> = {
+  TO_HOME: 1,
+  TO_WORK: 0,
+};
+
+const isItTooLateToAddTrip = (type: Destination, date: Date) => {
+  const businessDaysLimit = maxBusinessDaysToAddTrip[type];
+  const diffrence = dayjs(date).businessDaysDiff(dayjs());
+
+  return diffrence > businessDaysLimit;
+};
 
 export const addTrip: RequestHandler = async (req, res) => {
-  const { date, tripType } = req.body;
+  const { date: dateInMilliseconds, tripType: type } = req.body;
+  const date = new Date(dateInMilliseconds);
+  const userId = req.user?.id;
 
-  const tripDay = new Date(date);
-  const today = getShortDate(new Date().toISOString());
-  const dayOfTrip = getShortDate(tripDay.toISOString());
+  if (isWeekend(date)) return res.status(StatusCodes.BAD_REQUEST).send('W weekend nie pracujemy:)');
+  if (isItTooLateToAddTrip(type, date)) return res.status(StatusCodes.BAD_REQUEST).send('Już nie możesz dodać trasy, za poźno');
 
-  const alreadyExistTrip = await prisma.user.findUnique({
-    where: { email: req.user?.email },
-    select: { trips: { where: { dayOfTrip: tripDay, type: tripType } } },
-  });
+  const trips = await prisma.trip.findMany({ where: { userId } });
+  const tripsAtTheSameDate = trips.filter(isTheSameTrip(date, type));
 
-  if (isWeekend(tripDay)) {
-    return res.status(400).send('w weekend nie pracujemy:)');
-  }
-  if (alreadyExistTrip !== null && alreadyExistTrip.trips?.length > 0) {
-    return res.status(400).send('trasa została dodana wcześniej');
-  }
+  if (tripsAtTheSameDate.length > 0) return res.status(StatusCodes.BAD_REQUEST).send('Trasa została dodana wcześniej');
 
-  if (tripType.includes('TO_WORK')) {
-    if (today !== dayOfTrip) {
-      return res.status(400).send('już nie możesz dodać trasy, za poźno');
-    }
-  }
+  const trip = await prisma.trip.create({ data: { dayOfTrip: date, type, User: { connect: { id: userId } } } });
 
-  if (tripType.includes('TO_HOME')) {
-    const prevDay = parseInt(today!) - 1;
-    if (today !== dayOfTrip && dayOfTrip !== prevDay.toString()) {
-      return res.status(400).send('już nie możesz dodać trasy, za poźno');
-    }
-  }
-
-  const trip = await prisma.user.update({
-    where: { email: req.user?.email },
-    data: { trips: { create: { dayOfTrip: tripDay, type: tripType, createdAt: new Date().toISOString() } } },
-  });
-
-  return res.status(201).send(trip);
+  return res.status(StatusCodes.CREATED).send(trip);
 };
+
 export const getAllTrips: RequestHandler = async (req, res) => {
   const trip = await prisma.user.findUnique({
     where: { email: req.user?.email },
@@ -51,9 +53,3 @@ export const getAllTrips: RequestHandler = async (req, res) => {
 
   return res.send(trip);
 };
-
-function getShortDate(dateString: string): string | undefined {
-  const result = dateString.split('T')[0]?.split('-')[2];
-
-  return result;
-}
