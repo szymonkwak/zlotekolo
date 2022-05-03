@@ -15,14 +15,14 @@ const DisplayDesktop = ({ user }: UserProps) => {
     <Grid gutter="xs">
       <Grid.Col span={5}>
         <AddRide />
+        <Standings user={user} />
+      </Grid.Col>
+      <Grid.Col span={5}>
         <UserSummary user={user} />
-        <CalendarWithTrips />
+        <CalendarWithTrips user={user} />
       </Grid.Col>
       <Grid.Col span={2}>
         <DistanceTimeline user={user} />
-      </Grid.Col>
-      <Grid.Col span={5}>
-        <Standings user={user} />
       </Grid.Col>
     </Grid>
   );

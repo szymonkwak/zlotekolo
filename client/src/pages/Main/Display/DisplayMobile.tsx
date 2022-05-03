@@ -1,6 +1,7 @@
 import { MeResponse } from '~/api/hooks/useMe';
 
 import AddRide from '../subcomponents/AddRide';
+import CalendarWithTrips from '../subcomponents/CalendarWithTrips';
 import Standings from '../subcomponents/Standings';
 import UserSummary from '../subcomponents/UserSummary';
 
@@ -11,6 +12,7 @@ const DisplayMobile = ({ user }: UserProps) => {
     <>
       <AddRide />
       <UserSummary user={user} />
+      <CalendarWithTrips user={user} />
       <Standings user={user} />
     </>
   );
