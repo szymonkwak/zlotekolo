@@ -2,6 +2,7 @@ import 'dayjs/locale/pl';
 
 import { Button, Chip, Chips, Grid, Paper, Title, useMantineTheme } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
+import { showNotification } from '@mantine/notifications';
 import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { Calendar } from 'tabler-icons-react';
@@ -13,13 +14,16 @@ import { postTrip, TripType } from '../requests/postTrip';
 
 const AddRide = () => {
   const theme = useMantineTheme();
-  const addTrip = useMutation(postTrip);
+  const { mutateAsync: addTrip } = useMutation(postTrip);
   const [tripType, setTripType] = useState<TripType>('TO_WORK');
-  const [tripDate, setTripDate] = useState<Date>(new Date(Date.now()));
+  const [tripDate, setTripDate] = useState<Date>(new Date());
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    addTrip.mutate({ tripDate, tripType }, { onSuccess: () => queryClient.invalidateQueries(QueryKeys.Me) });
+    tripDate.setHours(12);
+    await addTrip({ tripDate, tripType });
+    queryClient.invalidateQueries(QueryKeys.Me);
+    showNotification({ message: 'Przejazd został zapisany', color: 'green' });
   };
 
   const handleSelectTrip = (value: TripType) => {
@@ -48,6 +52,7 @@ const AddRide = () => {
             allowLevelChange={false}
             icon={<Calendar size={16} />}
             placeholder="Wybierz"
+            maxDate={new Date()}
           />
         </Grid.Col>
 

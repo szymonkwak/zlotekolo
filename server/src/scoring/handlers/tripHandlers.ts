@@ -1,59 +1,24 @@
 ﻿import { RequestHandler } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 import { prisma } from '~/common/prisma';
 
-const isWeekend = (day: Date) => day.getDay() === 6 || day.getDay() === 0;
+import { isItTooLateToAddTrip, isTheSameTrip, isWeekend, parseDateString } from '../services/trip';
 
 export const addTrip: RequestHandler = async (req, res) => {
-  const { date, tripType } = req.body;
+  const { date: dateString, tripType: type } = req.body;
+  const date = parseDateString(dateString);
+  const userId = req.user?.id;
 
-  const tripDay = new Date(date);
-  const today = getShortDate(new Date().toISOString());
-  const dayOfTrip = getShortDate(tripDay.toISOString());
+  if (isWeekend(date)) return res.status(StatusCodes.BAD_REQUEST).send('W weekend nie pracujemy:)');
+  if (isItTooLateToAddTrip(type, date)) return res.status(StatusCodes.BAD_REQUEST).send('Już nie możesz dodać trasy, za poźno');
 
-  const alreadyExistTrip = await prisma.user.findUnique({
-    where: { email: req.user?.email },
-    select: { trips: { where: { dayOfTrip: tripDay, type: tripType } } },
-  });
+  const trips = await prisma.trip.findMany({ where: { userId } });
+  const tripsAtTheSameDate = trips.filter(isTheSameTrip(date, type));
 
-  if (isWeekend(tripDay)) {
-    return res.status(400).send('w weekend nie pracujemy:)');
-  }
-  if (alreadyExistTrip !== null && alreadyExistTrip.trips?.length > 0) {
-    return res.status(400).send('trasa została dodana wcześniej');
-  }
+  if (tripsAtTheSameDate.length > 0) return res.status(StatusCodes.BAD_REQUEST).send('Trasa została dodana wcześniej');
 
-  if (tripType.includes('TO_WORK')) {
-    if (today !== dayOfTrip) {
-      return res.status(400).send('już nie możesz dodać trasy, za poźno');
-    }
-  }
+  const trip = await prisma.trip.create({ data: { dayOfTrip: date.toDate(), type, User: { connect: { id: userId } } } });
 
-  if (tripType.includes('TO_HOME')) {
-    const prevDay = parseInt(today!) - 1;
-    if (today !== dayOfTrip && dayOfTrip !== prevDay.toString()) {
-      return res.status(400).send('już nie możesz dodać trasy, za poźno');
-    }
-  }
-
-  const trip = await prisma.user.update({
-    where: { email: req.user?.email },
-    data: { trips: { create: { dayOfTrip: tripDay, type: tripType, createdAt: new Date().toISOString() } } },
-  });
-
-  return res.status(201).send(trip);
+  return res.status(StatusCodes.CREATED).send(trip);
 };
-export const getAllTrips: RequestHandler = async (req, res) => {
-  const trip = await prisma.user.findUnique({
-    where: { email: req.user?.email },
-    include: { trips: true },
-  });
-
-  return res.send(trip);
-};
-
-function getShortDate(dateString: string): string | undefined {
-  const result = dateString.split('T')[0]?.split('-')[2];
-
-  return result;
-}
