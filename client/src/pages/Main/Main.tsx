@@ -9,9 +9,9 @@ import { LogoutButton } from '~/components/LogoutButton/LogoutButton';
 import { ErrorPage } from '~/pages/Error/ErrorPage';
 import { Paths } from '~/routes/paths';
 
-import DisplayDesktop from './subcomponents/Display/DisplayDesktop';
-import DisplayMobile from './subcomponents/Display/DisplayMobile';
-import { isMoblieView } from './subcomponents/Display/isMobileView';
+import DisplayDesktop from './Display/DisplayDesktop';
+import DisplayMobile from './Display/DisplayMobile';
+import { isMoblieView } from './Display/isMobileView';
 import UserData from './subcomponents/UserData';
 
 const Main = () => {

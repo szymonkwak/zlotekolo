@@ -60,9 +60,7 @@ const Standings = ({ user }: UserProps) => {
         </Paper>
         <Divider />
         <Box mt="md" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={handleClick} size="md">
-            Wyświetl ranking
-          </Button>
+          <Button onClick={handleClick}>Wyświetl ranking</Button>
         </Box>
       </Paper>
     </>

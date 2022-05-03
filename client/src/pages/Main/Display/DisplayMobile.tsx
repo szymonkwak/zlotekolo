@@ -1,8 +1,8 @@
 import { MeResponse } from '~/api/hooks/useMe';
 
-import AddRide from '../AddRide';
-import Standings from '../Standings';
-import UserSummary from '../UserSummary';
+import AddRide from '../subcomponents/AddRide';
+import Standings from '../subcomponents/Standings';
+import UserSummary from '../subcomponents/UserSummary';
 
 type UserProps = { user: MeResponse };
 
