@@ -1,13 +1,14 @@
-import { Paper, Text, Title } from '@mantine/core';
+import { Paper, Text, Title, useMantineTheme } from '@mantine/core';
 
 import { MeResponse } from '~/api/hooks/useMe';
 
 type UserProps = { user: MeResponse };
 
 const UserSummary = ({ user }: UserProps) => {
+  const theme = useMantineTheme();
   const { score, trips, maxTrips } = user;
   return (
-    <Paper withBorder p="md" m="sm">
+    <Paper p="md" m="sm" sx={{ backgroundColor: theme.colors.gray[0] }}>
       <Title order={3} sx={{ marginBottom: 10 }}>
         Podsumowanie:
       </Title>

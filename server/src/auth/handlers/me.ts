@@ -21,6 +21,7 @@ export const getMe: RequestHandler = async (req, res) => {
   res.send({
     ...user,
     score,
+    listOfTrips: trips,
     trips: countTrips(user.trips),
     maxTrips: calculateBusinessDays() * 2,
     totalDistance: getTotalDistance(user),

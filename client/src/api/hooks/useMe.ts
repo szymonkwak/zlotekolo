@@ -17,7 +17,16 @@ export type MeResponse = {
   score: number;
   totalDistance: number;
   totalMonthDistance: number;
+  listOfTrips: ListOfTrips;
 };
+
+export type ListOfTrips = Array<{
+  createdAt: string;
+  dayOfTrip: string;
+  id: string;
+  type: string;
+  userId: string;
+}>;
 
 const fetchMe = async () => {
   const { data } = await axiosClient.get<MeResponse>('/api/auth/me');

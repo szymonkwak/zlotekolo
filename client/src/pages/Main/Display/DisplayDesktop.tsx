@@ -2,10 +2,11 @@ import { Grid } from '@mantine/core';
 
 import { MeResponse } from '~/api/hooks/useMe';
 
-import AddRide from '../AddRide';
-import DistanceTimeline from '../DistanceTimeline';
-import Standings from '../Standings';
-import UserSummary from '../UserSummary';
+import AddRide from '../subcomponents/AddRide';
+import CalendarWithTrips from '../subcomponents/CalendarWithTrips';
+import DistanceTimeline from '../subcomponents/DistanceTimeline';
+import Standings from '../subcomponents/Standings';
+import UserSummary from '../subcomponents/UserSummary';
 
 type UserProps = { user: MeResponse };
 
@@ -14,13 +15,14 @@ const DisplayDesktop = ({ user }: UserProps) => {
     <Grid gutter="xs">
       <Grid.Col span={5}>
         <AddRide />
+        <Standings user={user} />
+      </Grid.Col>
+      <Grid.Col span={5}>
         <UserSummary user={user} />
+        <CalendarWithTrips user={user} />
       </Grid.Col>
       <Grid.Col span={2}>
         <DistanceTimeline user={user} />
-      </Grid.Col>
-      <Grid.Col span={5}>
-        <Standings user={user} />
       </Grid.Col>
     </Grid>
   );

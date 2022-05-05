@@ -1,8 +1,9 @@
 import { MeResponse } from '~/api/hooks/useMe';
 
-import AddRide from '../AddRide';
-import Standings from '../Standings';
-import UserSummary from '../UserSummary';
+import AddRide from '../subcomponents/AddRide';
+import CalendarWithTrips from '../subcomponents/CalendarWithTrips';
+import Standings from '../subcomponents/Standings';
+import UserSummary from '../subcomponents/UserSummary';
 
 type UserProps = { user: MeResponse };
 
@@ -11,6 +12,7 @@ const DisplayMobile = ({ user }: UserProps) => {
     <>
       <AddRide />
       <UserSummary user={user} />
+      <CalendarWithTrips user={user} />
       <Standings user={user} />
     </>
   );
