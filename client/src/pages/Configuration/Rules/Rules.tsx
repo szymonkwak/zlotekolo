@@ -10,6 +10,13 @@ export const Rules = () => {
 
   return (
     <>
+      <Text>
+        Akceptuję
+        <Anchor px={4} onClick={() => setOpened(true)}>
+          regulamin
+        </Anchor>
+        konkursu
+      </Text>
       <Modal size="60vw" opened={opened} onClose={() => setOpened(false)} title={modalTitle()}>
         <ScrollArea style={{ height: 700 }}>
           <TypographyStylesProvider>
@@ -316,13 +323,6 @@ export const Rules = () => {
           </TypographyStylesProvider>
         </ScrollArea>
       </Modal>
-      <Text>
-        Akceptuję
-        <Anchor sx={{ padding: 5 }} onClick={() => setOpened(true)}>
-          regulamin
-        </Anchor>
-        konkursu
-      </Text>
     </>
   );
 };
