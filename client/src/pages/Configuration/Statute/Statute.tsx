@@ -1,7 +1,7 @@
-import { Anchor, Modal, ScrollArea, Text, Title, TypographyStylesProvider } from '@mantine/core';
+import { Anchor, List, Modal, ScrollArea, Text, Title, TypographyStylesProvider } from '@mantine/core';
 import { useState } from 'react';
 
-export const Rules = () => {
+export const Statute = () => {
   const [opened, setOpened] = useState(false);
 
   const modalTitle = () => {
@@ -10,8 +10,15 @@ export const Rules = () => {
 
   return (
     <>
-      <Modal size="60vw" opened={opened} onClose={() => setOpened(false)} title={modalTitle()}>
-        <ScrollArea style={{ height: 700 }}>
+      <Text>
+        Akceptuję
+        <Anchor px={4} onClick={() => setOpened(true)}>
+          regulamin
+        </Anchor>
+        konkursu
+      </Text>
+      <Modal size="80vw" opened={opened} onClose={() => setOpened(false)} title={modalTitle()}>
+        <ScrollArea type="always" style={{ height: '75vh' }}>
           <TypographyStylesProvider>
             <Text size="md" sx={{ whiteSpace: 'pre-line' }}>
               <Title order={4}>§ 1 Postanowienia ogólne</Title>
@@ -101,14 +108,24 @@ export const Rules = () => {
               <Title order={4}>§ 6 Obowiązki Koordynatorów wewnętrznych</Title>{' '}
               <Text>
                 1. Koordynatorzy wewnętrzni zobowiązują się do stałej współpracy z Organizatorem na potrzeby przeprowadzenia Kampanii, w tym
-                w szczególności do: - wyznaczenia w danym Podmiocie sposobu rejestrowania przejazdów przez Uczestników Kampanii, - pomocy w
-                przeprowadzeniu ankiet, o których mowa w § 8, wśród Uczestników Kampanii, - raportowania zbiorczych wyników za wskazany
-                okres w ciągu 8 dni roboczych od jego zakończenia z wykorzystaniem arkusza kalkulacyjnego przekazanego przez Organizatora, -
-                wewnętrznej weryfikacji rzetelności procesu rejestracji przejazdów, jeśli nastąpi taka potrzeba, - odbioru w wyznaczonym
-                przez Organizatora terminie upominków i ich dystrybucji wśród nagrodzonych Uczestników Kampanii (Koordynator i Organizator
-                mogą ustalić za obopólną zgodą inny tryb odbioru i dystrybucji upominków), - wyznaczenia Zastępcy, który przejmie
-                koordynację nad Kampanią, w tym wszystkie obowiązki związane z jej prowadzeniem, na czas swojej nieobecności z powodu np.
-                urlopu.
+                w szczególności do:
+                <List>
+                  <List.Item>wyznaczenia w danym Podmiocie sposobu rejestrowania przejazdów przez Uczestników Kampanii,</List.Item>
+                  <List.Item>pomocy w przeprowadzeniu ankiet, o których mowa w § 8, wśród Uczestników Kampanii,</List.Item>
+                  <List.Item>
+                    raportowania zbiorczych wyników za wskazany okres w ciągu 8 dni roboczych od jego zakończenia z wykorzystaniem arkusza
+                    kalkulacyjnego przekazanego przez Organizatora,
+                  </List.Item>
+                  <List.Item>wewnętrznej weryfikacji rzetelności procesu rejestracji przejazdów, jeśli nastąpi taka potrzeba,</List.Item>
+                  <List.Item>
+                    odbioru w wyznaczonym przez Organizatora terminie upominków i ich dystrybucji wśród nagrodzonych Uczestników Kampanii
+                    (Koordynator i Organizator mogą ustalić za obopólną zgodą inny tryb odbioru i dystrybucji upominków),
+                  </List.Item>
+                  <List.Item>
+                    wyznaczenia Zastępcy, który przejmie koordynację nad Kampanią, w tym wszystkie obowiązki związane z jej prowadzeniem, na
+                    czas swojej nieobecności z powodu np. urlopu.
+                  </List.Item>
+                </List>
               </Text>
               <Text>
                 2. Koordynatorzy wewnętrzni są zobowiązani do podania danych osobowych, to jest swojego imienia i nazwiska, służbowego
@@ -120,10 +137,18 @@ export const Rules = () => {
                 Wszystkich Świętych 3-4, 31-004 Kraków.
               </Text>
               <Title order={4}>§ 7 Obowiązki Uczestnika</Title>
-              Kampanii Uczestnik Kampanii zobowiązuje się do: - wybrania pseudonimu na potrzeby rejestracji przejazdów, który będzie
-              jednoznacznie identyfikował go w ramach danego Podmiotu, - współpracy z Organizatorem i Koordynatorami wewnętrznymi w celu
-              sprawnego przeprowadzenia Kampanii, - rzetelnego i uczciwego rejestrowania przejazdów w sposób wybrany w ramach swojego
-              Podmiotu pod wybranym pseudonimem, - do wypełnienia ankiet, o których mowa w § 8.
+              Kampanii Uczestnik Kampanii zobowiązuje się do:
+              <List>
+                <List.Item>
+                  wybrania pseudonimu na potrzeby rejestracji przejazdów, który będzie jednoznacznie identyfikował go w ramach danego
+                  Podmiotu,
+                </List.Item>
+                <List.Item>współpracy z Organizatorem i Koordynatorami wewnętrznymi w celu sprawnego przeprowadzenia Kampanii,</List.Item>
+                <List.Item>
+                  rzetelnego i uczciwego rejestrowania przejazdów w sposób wybrany w ramach swojego Podmiotu pod wybranym pseudonimem,
+                </List.Item>
+                <List.Item>do wypełnienia ankiet, o których mowa w § 8.</List.Item>
+              </List>
               <Title order={4}>§ 8 Ankiety</Title> 1. Uczestnicy Kampanii zobowiązują się do wypełnienia ankiet przygotowanych przez
               Organizatora. Organizator planuje przeprowadzenie ankiet maks. 5 razy w trakcie trwania Kampanii lub po jej zakończeniu.
               Ankiety będą przede wszystkim związane z Kampanią i podróżowaniem do pracy i co do zasady będą miały formę elektroniczną.
@@ -138,10 +163,19 @@ export const Rules = () => {
               </Text>
               <Title order={4}>§ 9 Prawa i obowiązki Organizatora</Title>
               <Text>
-                1. Organizator zobowiązuje się do: - zapewnienia upominków dla najaktywniejszych Uczestników biorących udział w Kampanii
-                przez cały okres jej trwania, - dostarczenia Koordynatorom wewnętrznym materiałów niezbędnych do promowania Kampanii i jej
-                przeprowadzenia, - przekazania upominków Koordynatorom wewnętrznym lub innym przedstawicielom danego Podmiotu w celu ich
-                dalszej dystrybucji wśród nagrodzonych pracowników.
+                1. Organizator zobowiązuje się do:
+                <List>
+                  <List.Item>
+                    zapewnienia upominków dla najaktywniejszych Uczestników biorących udział w Kampanii przez cały okres jej trwania,
+                  </List.Item>
+                  <List.Item>
+                    dostarczenia Koordynatorom wewnętrznym materiałów niezbędnych do promowania Kampanii i jej przeprowadzenia,
+                  </List.Item>
+                  <List.Item>
+                    przekazania upominków Koordynatorom wewnętrznym lub innym przedstawicielom danego Podmiotu w celu ich dalszej
+                    dystrybucji wśród nagrodzonych pracowników.
+                  </List.Item>
+                </List>
               </Text>
               <Text>
                 2. Organizator zastrzega sobie prawo do wykluczenia w dowolnym momencie z dalszego udziału w Kampanii Podmiotów, w przypadku
@@ -165,9 +199,14 @@ export const Rules = () => {
               </Text>
               <Title order={4}>§ 10 Zasady rejestracji przejazdów </Title>
               <Text>
-                1. Rejestracji w Kampanii podlegać będą tylko przejazdy rowerowe dokonywane w trakcie podróży do i z pracy, to jest: - na
-                trasie między miejscem zamieszkania a siedzibą Podmiotu oraz trasie powrotnej lub - na trasie między miejscem wskazanym
-                przez uczestnika jako start podróży rowerowej a siedzibą Podmiotu oraz trasie powrotnej.
+                1. Rejestracji w Kampanii podlegać będą tylko przejazdy rowerowe dokonywane w trakcie podróży do i z pracy, to jest:
+                <List>
+                  <List.Item>na trasie między miejscem zamieszkania a siedzibą Podmiotu oraz trasie powrotnej lub</List.Item>
+                  <List.Item>
+                    na trasie między miejscem wskazanym przez uczestnika jako start podróży rowerowej a siedzibą Podmiotu oraz trasie
+                    powrotnej.
+                  </List.Item>
+                </List>
               </Text>
               <Text>
                 2. Uczestnik Kampanii zobowiązany jest do wskazania dystansu na trasie między miejscem zamieszkania a siedzibą Podmiotu lub
@@ -292,14 +331,26 @@ export const Rules = () => {
               </Text>
               <Title order={4}>§ 12 Postanowienia końcowe</Title>{' '}
               <Text>
-                1. Organizator nie ponosi odpowiedzialności za: - skutki prawne działań podjętych przez Podmiot na rzecz przeprowadzenia
-                Kampanii wśród swoich pracowników, w tym za ewentualne konsekwencje prawne wynikające z korzystania z aplikacji lub innych
-                narzędzi elektronicznych na potrzeby rejestracji przejazdów, - następstwa działań lub zdarzeń będących konsekwencjami
-                uczestnictwa w Kampanii (np. odpowiedzialność odszkodowawcza, konsekwencje zdrowotne, prawne, finansowe, szkody na mieniu i
-                ciele, zniszczenia, kradzieże itp.), - zaginięcie/zniszczenie upominków w przypadku przekazania upominków Koordynatorowi
-                wewnętrznemu w sposób inny niż bezpośredni (niebezpośredni sposób przekazania upominków może być uzgodniony między
-                Organizatorem a Koordynatorem wewnętrznym na prośbę Koordynatora wewnętrznego), - przebieg Kampanii w ramach danego Podmiotu
-                (np. za jej promocję), w tym za pracę Koordynatorów wewnętrznych.
+                1. Organizator nie ponosi odpowiedzialności za:
+                <List>
+                  <List.Item>
+                    skutki prawne działań podjętych przez Podmiot na rzecz przeprowadzenia Kampanii wśród swoich pracowników, w tym za
+                    ewentualne konsekwencje prawne wynikające z korzystania z aplikacji lub innych narzędzi elektronicznych na potrzeby
+                    rejestracji przejazdów,
+                  </List.Item>
+                  <List.Item>
+                    następstwa działań lub zdarzeń będących konsekwencjami uczestnictwa w Kampanii (np. odpowiedzialność odszkodowawcza,
+                    konsekwencje zdrowotne, prawne, finansowe, szkody na mieniu i ciele, zniszczenia, kradzieże itp.),
+                  </List.Item>
+                  <List.Item>
+                    zaginięcie/zniszczenie upominków w przypadku przekazania upominków Koordynatorowi wewnętrznemu w sposób inny niż
+                    bezpośredni (niebezpośredni sposób przekazania upominków może być uzgodniony między Organizatorem a Koordynatorem
+                    wewnętrznym na prośbę Koordynatora wewnętrznego),
+                  </List.Item>
+                  <List.Item>
+                    przebieg Kampanii w ramach danego Podmiotu (np. za jej promocję), w tym za pracę Koordynatorów wewnętrznych.
+                  </List.Item>
+                </List>
               </Text>
               <Text>
                 2. Organizator zaleca udział w Kampanii z uwzględnieniem możliwości zdrowotnych i fizycznych każdego z Uczestników.
@@ -316,13 +367,6 @@ export const Rules = () => {
           </TypographyStylesProvider>
         </ScrollArea>
       </Modal>
-      <Text>
-        Akceptuję
-        <Anchor sx={{ padding: 5 }} onClick={() => setOpened(true)}>
-          regulamin
-        </Anchor>
-        konkursu
-      </Text>
     </>
   );
 };

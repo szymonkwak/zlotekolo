@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Group, Paper, ScrollArea, Table, Text } from '@mantine/core';
+import { Avatar, Box, Button, Group, Paper, ScrollArea, Table, Text, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowNarrowLeft } from 'tabler-icons-react';
@@ -7,8 +7,6 @@ import { axiosClient } from '~/api/axiosClient';
 import { Logo } from '~/components/Logo';
 import { Paths } from '~/routes/paths';
 
-import { boxStyles } from '../Configuration/Configuration.styles';
-import { Header } from '../Configuration/Header';
 import { GoldWheel } from './Icons';
 
 export const Leaderboard = () => {
@@ -40,7 +38,7 @@ export const Leaderboard = () => {
         sx={(theme) => ({
           backgroundColor: theme.colors.dark[3],
         })}
-        style={boxStyles}
+        // style={boxStyles}
       >
         <Paper
           sx={(theme) => ({
@@ -52,7 +50,7 @@ export const Leaderboard = () => {
         >
           <Box sx={{ display: 'grid', gridTemplateColumns: '1.5fr 2fr', paddingBottom: '3rem' }}>
             <Logo />
-            <Header title="Ranking" />
+            <Title order={1}>Ranking</Title>
           </Box>
           <Box style={{ height: 500, paddingBottom: '3rem' }}>
             <ScrollArea style={{ height: 500, padding: '0px 25px' }}>

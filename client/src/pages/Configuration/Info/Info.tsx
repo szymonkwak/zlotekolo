@@ -1,37 +1,28 @@
-import { ActionIcon, Popover, Text } from '@mantine/core';
+import { Center, Popover, Text } from '@mantine/core';
 import { useState } from 'react';
-import { AlertCircle } from 'tabler-icons-react';
+import { InfoCircle } from 'tabler-icons-react';
 
 type InfoCircleProps = {
-  info: string;
+  hoverText: string;
 };
 
-export const InfoCircle = ({ info }: InfoCircleProps) => {
+export const Info = ({ hoverText: info }: InfoCircleProps) => {
   const [opened, setOpened] = useState(false);
 
   return (
     <Popover
       opened={opened}
       onClose={() => setOpened(false)}
-      position="bottom"
-      placement="center"
+      position="top"
       withArrow
       trapFocus={false}
       closeOnEscape={false}
-      transition="pop-top-left"
-      width={260}
-      styles={{ body: { pointerEvents: 'none' } }}
+      transition="pop"
+      width={340}
       target={
-        <ActionIcon
-          sx={{
-            paddingTop: '25px',
-            paddingRight: '5px',
-          }}
-          onMouseEnter={() => setOpened(true)}
-          onMouseLeave={() => setOpened(false)}
-        >
-          <AlertCircle size={20} style={{ color: 'lime' }}></AlertCircle>
-        </ActionIcon>
+        <Center>
+          <InfoCircle size={20} onMouseEnter={() => setOpened(true)} onMouseLeave={() => setOpened(false)} />
+        </Center>
       }
     >
       <div style={{ display: 'flex' }}>
