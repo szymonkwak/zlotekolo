@@ -4,10 +4,6 @@ import { RequestHandler } from 'express';
 import { prisma } from '~/common/prisma';
 import { calculateBusinessDays, calculateScore, countTrips } from '~/scoring/calculateScore';
 
-const getTotalDistance = (user: User & { trips: Trip[] }): number => {
-  return user.toWorkDistance * user.trips.length;
-};
-
 export const getMe: RequestHandler = async (req, res) => {
   const trips = await prisma.trip.findMany({
     where: {
@@ -24,7 +20,6 @@ export const getMe: RequestHandler = async (req, res) => {
     listOfTrips: trips,
     trips: countTrips(user.trips),
     maxTrips: calculateBusinessDays() * 2,
-    totalDistance: getTotalDistance(user),
     totalMonthDistance: countTrips(user.trips) * user.toWorkDistance,
   });
 };
