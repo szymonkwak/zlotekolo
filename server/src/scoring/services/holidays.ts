@@ -1,5 +1,3 @@
-// Jeżeli święto w sobotę to nie zotanie uwzględnione w obliczeniach
-
 export const holidays = [
   '2022-01-01',
   '2022-01-06',

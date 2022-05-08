@@ -21,6 +21,11 @@ export const calculateBusinessDays = (YYYY_MM = getNowYYYY_MM()) => {
       businessDays++;
     }
   }
+  // Jeżeli święto wypada w sobotę zmniejsz liczbę dni pracujących
+  holidays.map((holiday) => {
+    if (parseDateString(holiday).isSame(date, 'month') && parseDateString(holiday).day() === 6) businessDays--;
+  });
+
   return businessDays;
 };
 
