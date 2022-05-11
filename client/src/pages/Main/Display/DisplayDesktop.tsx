@@ -3,6 +3,7 @@ import { Grid } from '@mantine/core';
 import { MeResponse } from '~/api/hooks/useMe';
 
 import AddRide from '../components/AddRide';
+import BusinessTrip from '../components/BusinessTrip';
 import CalendarWithTrips from '../components/CalendarWithTrips';
 import DistanceTimeline from '../components/DistanceTimeline';
 import Standings from '../components/Standings';
@@ -15,6 +16,7 @@ const DisplayDesktop = ({ user }: UserProps) => {
     <Grid gutter="xs">
       <Grid.Col span={5}>
         <AddRide />
+        <BusinessTrip />
         <Standings user={user} />
       </Grid.Col>
       <Grid.Col span={5}>

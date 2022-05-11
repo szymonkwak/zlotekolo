@@ -2,6 +2,7 @@ import 'dayjs/locale/pl';
 
 import { Button, Chip, Chips, Grid, Paper, Title, useMantineTheme } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
+import { useMediaQuery } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
@@ -14,6 +15,7 @@ import { postTrip, TripType } from '../requests/postTrip';
 
 const AddRide = () => {
   const theme = useMantineTheme();
+  const isMobile = useMediaQuery('(max-width: 600px)');
   const { mutateAsync: addTrip } = useMutation(postTrip);
   const [tripType, setTripType] = useState<TripType>('TO_WORK');
   const [tripDate, setTripDate] = useState<Date>(new Date());
@@ -49,6 +51,8 @@ const AddRide = () => {
             onChange={handleSelectDate}
             required
             locale="pl"
+            dropdownType={isMobile ? 'modal' : 'popover'}
+            clearable={false}
             allowLevelChange={false}
             icon={<Calendar size={16} />}
             placeholder="Wybierz"
