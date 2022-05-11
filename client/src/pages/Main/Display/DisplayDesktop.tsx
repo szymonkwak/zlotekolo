@@ -2,11 +2,11 @@ import { Grid } from '@mantine/core';
 
 import { MeResponse } from '~/api/hooks/useMe';
 
-import AddRide from '../subcomponents/AddRide';
-import CalendarWithTrips from '../subcomponents/CalendarWithTrips';
-import DistanceTimeline from '../subcomponents/DistanceTimeline';
-import Standings from '../subcomponents/Standings';
-import UserSummary from '../subcomponents/UserSummary';
+import AddRide from '../components/AddRide';
+import CalendarWithTrips from '../components/CalendarWithTrips';
+import DistanceTimeline from '../components/DistanceTimeline';
+import Standings from '../components/Standings';
+import UserSummary from '../components/UserSummary';
 
 type UserProps = { user: MeResponse };
 
