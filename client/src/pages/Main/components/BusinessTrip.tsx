@@ -2,18 +2,24 @@ import { Button, Grid, Paper, Title, useMantineTheme } from '@mantine/core';
 import { DateRangePicker } from '@mantine/dates';
 import { useMediaQuery } from '@mantine/hooks';
 import { SyntheticEvent, useState } from 'react';
+import { useMutation } from 'react-query';
 import { Calendar } from 'tabler-icons-react';
+
+import { postBusinessTrip } from '../requests/postBusinessTrip';
 
 const BusinessTrip = () => {
   const theme = useMantineTheme();
   const isMobile = useMediaQuery('(max-width: 600px)');
-  const [businessTripDates, setBusinessTripDates] = useState<[Date | null, Date | null]>();
+  const { mutateAsync: addBusinessTrip } = useMutation(postBusinessTrip);
+  const [businessTripDates, setBusinessTripDates] = useState<[Date | null, Date | null]>([null, null]);
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     console.log(businessTripDates);
-    console.log('submit');
+    if (!businessTripDates[0] || !businessTripDates[1]) return; // TODO
+    await addBusinessTrip({ from: businessTripDates[0], to: businessTripDates[1] });
   };
+
   return (
     <Paper component="form" onSubmit={handleSubmit} withBorder={false} p="md" m="sm" sx={{ backgroundColor: theme.colors.gray[0] }}>
       <Title order={3} sx={{ marginBottom: 10 }}>
