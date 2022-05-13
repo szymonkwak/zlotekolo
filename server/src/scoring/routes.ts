@@ -1,7 +1,7 @@
 ﻿import { Router } from 'express';
 
 import { authMiddleware } from './../auth/middleware/authMiddleware';
-import { addBusinessTrip } from './handlers/businessTrips';
+import { addBusinessTrip } from './handlers/businessTripsHandlers';
 import { addTrip } from './handlers/tripHandlers';
 import { getAllUsers, getUserMandatoryInfo } from './handlers/userHandlers';
 

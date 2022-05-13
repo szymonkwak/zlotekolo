@@ -6,6 +6,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { prisma } from '~/common/prisma';
 
+import { businessTripAlreadyExsists } from '../services/businessTrips';
 import { holidays } from '../services/holidays';
 import { parseDateString } from '../services/trip';
 
@@ -14,29 +15,31 @@ dayjs.extend(dayjsBusinessTime);
 dayjs.setHolidays(holidays);
 
 export const addBusinessTrip: RequestHandler = async (req, res) => {
-  console.log(req.body);
-  const { from, to } = req.body;
+  const { from: fromString, to: toString } = req.body;
+  const from = parseDateString(fromString);
+  const to = parseDateString(toString);
 
   let duration = 0;
   const businessTripDates: Date[] = [];
 
-  let loopDate = parseDateString(from);
-  while (loopDate.isSameOrBefore(parseDateString(to))) {
+  let loopDate = from;
+  while (loopDate.isSameOrBefore(to)) {
     if (loopDate.isBusinessDay()) {
       duration++;
       businessTripDates.push(loopDate.toDate());
     }
     loopDate = loopDate.add(1, 'day');
   }
-  console.log(duration);
-  console.log(businessTripDates);
+
+  if (await businessTripAlreadyExsists(businessTripDates, req.user!))
+    return res.status(StatusCodes.BAD_REQUEST).send('Data pokrywa się z zapisaną już wcześniej delegacją.');
 
   const businessTrip = await prisma.bussinesTrip.create({
     data: {
       dates: businessTripDates,
       duration,
+      userId: req.user?.id,
     },
   });
-
   return res.status(StatusCodes.CREATED).send(businessTrip);
 };

@@ -1,9 +1,13 @@
 import { Button, Grid, Paper, Title, useMantineTheme } from '@mantine/core';
 import { DateRangePicker } from '@mantine/dates';
 import { useMediaQuery } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
 import { SyntheticEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { Calendar } from 'tabler-icons-react';
+
+import { queryClient } from '~/api/QueryClientProvider';
+import { QueryKeys } from '~/api/QueryKeys';
 
 import { postBusinessTrip } from '../requests/postBusinessTrip';
 
@@ -15,9 +19,13 @@ const BusinessTrip = () => {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log(businessTripDates);
-    if (!businessTripDates[0] || !businessTripDates[1]) return; // TODO
+    if (!businessTripDates[0] || !businessTripDates[1]) {
+      showNotification({ message: 'Najpierw wybierz datę' });
+      return;
+    }
     await addBusinessTrip({ from: businessTripDates[0], to: businessTripDates[1] });
+    queryClient.invalidateQueries(QueryKeys.Me);
+    showNotification({ message: 'Delegacja została zapisana.', color: 'green' });
   };
 
   return (
