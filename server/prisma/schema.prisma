@@ -43,11 +43,10 @@ enum Destination {
 }
 
 model BussinesTrip {
-  id        String   @id @default(uuid())
-  from      DateTime
-  to        DateTime
+  id        String     @id @default(uuid())
+  dates     DateTime[]
   duration  Int
-  createdAt DateTime @default(now())
-  User      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime   @default(now())
+  User      User?      @relation(fields: [userId], references: [id])
   userId    String?
 }
