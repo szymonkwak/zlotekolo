@@ -2,7 +2,7 @@ import { Trip, User } from '@prisma/client';
 import { RequestHandler } from 'express';
 
 import { prisma } from '~/common/prisma';
-import { calculateBusinessDays, calculateScore, countTrips } from '~/scoring/calculateScore';
+import { calculateBusinessDays, calculateScore, countTrips } from '~/scoring/services/score';
 
 export const getMe: RequestHandler = async (req, res) => {
   const trips = await prisma.trip.findMany({

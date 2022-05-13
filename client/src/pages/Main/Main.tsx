@@ -9,10 +9,10 @@ import { LogoutButton } from '~/components/LogoutButton/LogoutButton';
 import { ErrorPage } from '~/pages/Error/ErrorPage';
 import { Paths } from '~/routes/paths';
 
+import UserData from './components/UserData';
 import DisplayDesktop from './Display/DisplayDesktop';
 import DisplayMobile from './Display/DisplayMobile';
 import { isMoblieView } from './Display/isMobileView';
-import UserData from './subcomponents/UserData';
 
 const Main = () => {
   const { data: user, isLoading, isError } = useMe();

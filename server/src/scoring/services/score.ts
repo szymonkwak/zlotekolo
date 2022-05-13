@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import dayjsBusinessTime from 'dayjs-business-time';
 
-import { getDateJs, getNowYYYY_MM } from './services/dates';
-import { holidays } from './services/holidays';
-import { parseDateString } from './services/trip';
+import { getDateJs, getNowYYYY_MM } from './dates';
+import { holidays } from './holidays';
+import { parseDateString } from './trip';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(dayjsBusinessTime);

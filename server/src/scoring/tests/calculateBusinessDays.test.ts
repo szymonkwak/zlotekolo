@@ -1,4 +1,4 @@
-import { calculateBusinessDays } from '../calculateScore';
+import { calculateBusinessDays } from '../services/score';
 
 describe('Calculate business days in month', () => {
   it('Should return 21 days for May 2022', () => {

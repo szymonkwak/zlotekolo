@@ -11,15 +11,16 @@ datasource db {
 }
 
 model User {
-  id             String       @id @default(uuid())
+  id             String         @id @default(uuid())
   username       String
   nickname       String
-  email          String       @unique
+  email          String         @unique
   avatar         String
-  contractType   ContractType @default(FULL_TIME)
-  isConfigured   Boolean      @default(false)
-  toWorkDistance Int          @default(2000)
+  contractType   ContractType   @default(FULL_TIME)
+  isConfigured   Boolean        @default(false)
+  toWorkDistance Int            @default(2000)
   trips          Trip[]
+  bussinesTrips  BussinesTrip[]
 }
 
 enum ContractType {
@@ -39,4 +40,13 @@ model Trip {
 enum Destination {
   TO_HOME
   TO_WORK
+}
+
+model BussinesTrip {
+  id        String     @id @default(uuid())
+  dates     DateTime[]
+  duration  Int
+  createdAt DateTime   @default(now())
+  User      User?      @relation(fields: [userId], references: [id])
+  userId    String?
 }

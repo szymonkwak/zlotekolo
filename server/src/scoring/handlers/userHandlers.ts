@@ -2,7 +2,7 @@
 
 import { prisma } from '~/common/prisma';
 
-import { calculateScore } from '../calculateScore';
+import { calculateScore } from '../services/score';
 import { validateUser } from './../validations/userValidate';
 
 export const getUserMandatoryInfo: RequestHandler = async (req, res) => {
