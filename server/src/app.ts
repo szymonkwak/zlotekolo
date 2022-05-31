@@ -1,12 +1,11 @@
+import 'dotenv/config';
+
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
 
 import { authRouter } from './auth/router';
 import { scoringRouter } from './scoring/routes';
-
-dotenv.config();
 
 if (!process.env.CLIENT_URL) {
   // eslint-disable-next-line no-console
